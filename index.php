@@ -8,9 +8,7 @@
 		<?php wp_head(); ?>
 	</head>
 	<body <?php body_class(); ?>>
-
-	<h1>react scores</h1>
-	<div id="root"></div>
-	<?php wp_footer(); ?>
-</body>
+		<div id="root"></div>
+		<?php wp_footer(); ?>
+	</body>
 </html>
