@@ -15,4 +15,4 @@ To build for production run:
 
 `yarn build`
 
-A production-ready React `bundle.js` file will be written to `dist/budle.js`.
+A production-ready React `bundle.js` file will be written to `dist/bundle.js`.
