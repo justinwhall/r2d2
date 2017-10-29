@@ -1,10 +1,10 @@
 <?php
 /**
- * React Scores functions and definitions
+ * R2D2 functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package React_Scores
+ * @package R2D2
  */
 
 if ( ! function_exists( 'r2d2_setup' ) ) :
@@ -100,8 +100,30 @@ add_action( 'after_setup_theme', 'react_scores_content_width', 0 );
  * Enqueue scripts and styles.
  */
 function react_scores_scripts() {
-	// wp_enqueue_style( 'r2d2-react-style', get_stylesheet_uri() );
 	wp_enqueue_script( 'r2d2-react', get_template_directory_uri() . '/dist/bundle.js', array(), '0.9', true );
 }
 add_action( 'wp_enqueue_scripts', 'react_scores_scripts' );
 
+
+function get_menu() {
+
+	$menu = wp_get_nav_menu_items( 'main' );
+
+	foreach ( $menu as $item ) {
+		// Just in case we have a home menu item with full url.
+		if ( get_site_url() === untrailingslashit( $item->url ) ) {
+			$item->uri = '/';
+		} else {
+			$item->uri = str_replace( get_site_url(), '', $item->url );
+		}
+	}
+
+	return $menu;
+}
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'r2d2', '/menu', array(
+		'methods' => 'GET',
+		'callback' => 'get_menu',
+	) );
+} );

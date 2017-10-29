@@ -19,26 +19,17 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const webpackConfig = {
-	devServer: {
-		colors: true,
-		quiet: false,
-		noInfo: false,
-		// publicPath: '/static/',
-		historyApiFallback: true,
-		// host: '127.0.0.1',
-		port: 3000,
-		hot: true
-	},
 	entry: [
-		// 'react-hot-loader/patch',
-		// 'webpack/hot/only-dev-server',
+		'react-hot-loader/patch',
 		'webpack-hot-middleware/client',
 		'./src/index.js'
 	],
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve( __dirname, 'dist' ),
-		publicPath: '/dist/'
+		publicPath: '/dist/',
+		hotUpdateChunkFilename: 'hot-update.js',
+		hotUpdateMainFilename: 'hot-update.json'
 	},
 	module: {
 		rules: [
@@ -67,7 +58,7 @@ const webpackConfig = {
 			}
 		]
 	},
-	// devtool: "eval-source-map",
+	devtool: "eval",
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		// new webpack.NoErrorsPlugin(),
@@ -97,6 +88,17 @@ if ( process.env.NODE_ENV === 'production' ) {
 	);
 
 	webpackConfig.output.path = buildFolder;
+} else {
+
+	webpackConfig.plugins.push(
+		new webpack.DefinePlugin({
+			'process.env': {
+			  NODE_ENV: JSON.stringify('development')
+			}
+		})
+	);
+
+
 }
 
 module.exports = webpackConfig;

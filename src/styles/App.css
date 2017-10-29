@@ -1,6 +1,13 @@
 body {
 	background: #e3e3e3;
 }
+
+nav a {
+	color: #11bed4;
+	margin-right: 10px;
+	display: inline-block;
+}
+
 div {
 	text-align: center;
 	font-family: Arial, Helvetica, sans-serif;

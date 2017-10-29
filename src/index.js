@@ -1,21 +1,28 @@
-import 'react-hot-loader/patch';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './components/App';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
+import App from './components/app/App';
+import store, { history } from './store'
 
-export const render = Component => {
 
-	ReactDOM.render(
+export const renderApp = Component => {
+	render(
 		<AppContainer>
-			<Component />
-		</AppContainer>,
+			<Provider store={store}>
+				<ConnectedRouter history={history}>
+						<App />
+				</ConnectedRouter>
+			</Provider>
+		</AppContainer>
+		,
 		document.getElementById('root')
 	);
 }
 
-render(App);
+renderApp(App);
 
 if ( module.hot ) {
-	module.hot.accept(() => { render(App) });
+	module.hot.accept(() => { renderApp(App) });
 }
