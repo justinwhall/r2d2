@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import {
 	getPage,
-} from './pageActions'
+} from './pagePostActions'
 
 class Page extends Component {
 
-	componentWillMount() {
-		this.props.getPage( '/wp-json/wp/v2/pages?slug=' + this.props.match.params.pageSlug )
+	componentDidMount() {
+		this.props.getPage( '/wp-json/wp/v2/multiple-post-type?slug=' + this.props.match.params.pageSlug + '&type[]=post&type[]=page' )
 	}
 
 	render() {
@@ -21,16 +21,18 @@ class Page extends Component {
 		const pageContent = this.props.page.content.rendered;
 
 		return (
-			<div>
+			<div >
 				<div dangerouslySetInnerHTML={ {__html: pageContent} } />
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = state => ({
-	page: state.page.data
-})
+const mapStateToProps = function ( state ) {
+	return {
+		page: state.page.data
+	}
+}
 
 const mapDispatchToProps = dispatch => bindActionCreators({
 	getPage

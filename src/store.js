@@ -7,6 +7,9 @@ import rootReducer from './rootReducer'
 export const history = createHistory()
 
 const initialState = {}
+
+console.log(r2d2Settings);
+
 const enhancers = []
 const middleware = [
   thunk,

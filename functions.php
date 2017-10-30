@@ -7,6 +7,24 @@
  * @package R2D2
  */
 
+/**
+ * R2D2 only works if the REST API is available
+ */
+if ( version_compare( $GLOBALS['wp_version'], '4.7', '<' ) ) {
+	require get_template_directory() . '/inc/compat-warnings.php';
+	return;
+}
+
+if ( ! defined( 'R2D2_VERSION' ) ) {
+	define( 'R2D2_VERSION', '1.0.3' );
+}
+
+if ( ! defined( 'R2D2_APP' ) ) {
+	define( 'R2D2_APP', 'r2d2-react' );
+}
+
+include_once 'rest.php';
+
 if ( ! function_exists( 'r2d2_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -127,3 +145,52 @@ add_action( 'rest_api_init', function () {
 		'callback' => 'get_menu',
 	) );
 } );
+
+function r2d2_inline_settings() {
+
+	$url = trailingslashit( home_url() );
+	$path = trailingslashit( wp_parse_url( $url )['path'] );
+
+	$front_page_slug = false;
+	$blog_page_slug = false;
+	if ( 'posts' !== get_option( 'show_on_front' ) ) {
+		$front_page_id = get_option( 'page_on_front' );
+		$front_page = get_post( $front_page_id );
+		if ( $front_page->post_name ) {
+			$front_page_slug = $front_page->post_name;
+		}
+
+		$blog_page_id = get_option( 'page_for_posts' );
+		$blog_page = get_post( $blog_page_id );
+		if ( $blog_page->post_name ) {
+			$blog_page_slug = $blog_page->post_name;
+		}
+	}
+
+	$user_id = get_current_user_id();
+	$user = get_userdata( $user_id );
+
+	$r2d2_settings = sprintf(
+		'var siteSettings = %s; var r2d2Settings = %s;',
+		wp_json_encode( array(
+			'endpoint' => esc_url_raw( $url ),
+			'nonce' => wp_create_nonce( 'wp_rest' ),
+		) ),
+		wp_json_encode( array(
+			'user' => get_current_user_id(),
+			'userDisplay' => $user ? $user->display_name : '',
+			'frontPage' => $front_page_slug,
+			'blog' => $blog_page_slug,
+			'URL' => array(
+				'base' => esc_url_raw( $url ),
+				'path' => $path,
+			),
+			'meta' => array(
+				'title' => get_bloginfo( 'name', 'display' ),
+				'description' => get_bloginfo( 'description', 'display' ),
+			),
+		) )
+	);
+	wp_add_inline_script( R2D2_APP, $r2d2_settings, 'before' );
+}
+add_action( 'wp_enqueue_scripts', 'r2d2_inline_settings' );
