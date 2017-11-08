@@ -8,8 +8,17 @@ function getPageFetchSuccess( data ) {
 	}
 }
 
+export function pageIsLoading( bool ) {
+	return {
+		type: 'PAGE_IS_LOADING',
+		isLoading: bool
+	};
+}
+
 export function getPage(url) {
-    return (dispatch) => {
+	return ( dispatch ) => {
+
+		dispatch( pageIsLoading( true ) );
 
         fetch(url)
             .then((response) => {

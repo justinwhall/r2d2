@@ -14,23 +14,27 @@ class Page extends Component {
 
 	render() {
 
-		if ( ! this.props.page ) {
-			return false;
+		if ( this.props.isLoading ) {
+			return (
+				<div className="loader"></div>
+			)
 		}
 
 		const pageContent = this.props.page.content.rendered;
 
 		return (
 			<div >
-				<div dangerouslySetInnerHTML={ {__html: pageContent} } />
+				{<div dangerouslySetInnerHTML={ {__html: pageContent} } /> }
 			</div>
 		);
 	}
 }
 
 const mapStateToProps = function ( state ) {
+
 	return {
-		page: state.page.data
+		page: state.page.data,
+		isLoading: state.page.isLoading
 	}
 }
 

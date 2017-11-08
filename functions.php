@@ -183,7 +183,7 @@ function r2d2_inline_settings() {
 			'blog' => $blog_page_slug,
 			'URL' => array(
 				'base' => esc_url_raw( $url ),
-				'path' => $path,
+				'path' => $path
 			),
 			'meta' => array(
 				'title' => get_bloginfo( 'name', 'display' ),

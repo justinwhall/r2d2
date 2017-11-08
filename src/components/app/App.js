@@ -1,16 +1,23 @@
 import React from 'react';
-import { Route, Link, Switch } from 'react-router-dom'
-import PagePost from '../pagePost/pagePost'
 import { Component } from "react";
-import { withRouter } from 'react-router-dom';
+import { Route, Link, Switch, withRouter } from 'react-router-dom'
+import PagePost from '../pagePost/pagePost'
+import Term from '../term/Term'
 import Nav from '../nav/Nav'
 import r2d2 from '../r2d2/r2d2'
 import '../../styles/App.css'
-
-const blogSlug = r2d2Settings.blogURI
-
+import { formatLink } from '../util/util'
 
 class App extends Component {
+
+	constructor(props) {
+		super( props );
+
+		this.state = {
+			locationKey: this.props.location.key
+		};
+
+	}
 
 	componentDidUpdate( prevProps ) {
 		if (this.props.location.pathname !== prevProps.location.pathname) {
@@ -19,7 +26,9 @@ class App extends Component {
 	}
 
 	onRouteChanged() {
-		console.log("R2D2 says route changed. beep."); // TODO: only update route component if router actually changes.
+		this.setState( {
+			locationKey: this.props.location.key
+		} )
 	}
 
 	render() {
@@ -32,7 +41,8 @@ class App extends Component {
 				<main>
 
 					<Route exact path="/" component={r2d2} />
-					<Route exact path="/:pageSlug" component={ PagePost } key={this.props.location.key}  />
+					<Route exact path="/:pageSlug" component={ PagePost } key={this.state.locationKey}  />
+					<Route exact path="/category/:termSlug" component={ Term } key={this.state.locationKey + 1}  />
 
 				</main>
 
