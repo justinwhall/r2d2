@@ -16,3 +16,11 @@ To build for production run:
 `yarn build`
 
 A production-ready React `bundle.js` file will be written to `dist/bundle.js`.
+
+### Road Map
+
+* Pagination
+* Excerpts
+* SASS support
+* Custom post type support
+* Custom taxonomy support

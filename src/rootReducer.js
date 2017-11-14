@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-import nav from './components/nav/navReducer'
-import page from './components/pagePost/pagePostReducer'
-import term from './components/term/termReducer'
+import nav from './containers/nav/navReducer'
+import page from './containers/pagePost/pagePostReducer'
+import term from './containers/term/termReducer'
+import author from './containers/author/authorReducer'
 
-export default combineReducers({
+export default combineReducers( {
 	router: routerReducer,
 	nav,
 	page,
-	term
-})
+	term,
+	author
+} )

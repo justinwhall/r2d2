@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import Article from '../article/article'
 
 import {
-  getTermPosts,
+	getTermPosts,
 } from './termActions'
 
 class Term extends Component {
@@ -18,7 +18,7 @@ class Term extends Component {
 	getTermArticles() {
 
 		const termArticles = this.props.termPosts.map( function ( item, i ) {
-			return <Article key={ i } { ...item }  />
+			return <Article key={ i } { ...item } />
 		} );
 
 		return termArticles;
@@ -36,15 +36,15 @@ class Term extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
-  termPosts: state.term.termPosts
-})
+const mapStateToProps = state => ( {
+	termPosts: state.term.termPosts
+} )
 
-const mapDispatchToProps = dispatch => bindActionCreators({
+const mapDispatchToProps = dispatch => bindActionCreators( {
 	getTermPosts
-}, dispatch)
+}, dispatch )
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Term)
+	mapStateToProps,
+	mapDispatchToProps
+)( Term )

@@ -9,13 +9,13 @@ const config = require( './config.json' );
 
 
 
-if (process.env.NODE_ENV !== 'production') {
+if ( process.env.NODE_ENV !== 'production' ) {
 	config.entry = [
 		'webpack-hot-middleware/client',
 		'./src/index.js'
 	]
 } else {
-	config.entry = ['./src/index.js']
+	config.entry = [ './src/index.js' ]
 }
 
 const webpackConfig = {
@@ -36,7 +36,7 @@ const webpackConfig = {
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loaders: [ 'babel-loader', 'react-hot-loader/webpack' ]
+				loaders: [ 'babel-loader' ]
 			},
 			{
 				test: /\.css$/,
@@ -58,7 +58,7 @@ const webpackConfig = {
 			}
 		]
 	},
-	devtool: "eval",
+	devtool: 'cheap-module-inline-source-map',
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		// new webpack.NoErrorsPlugin(),
@@ -80,28 +80,28 @@ if ( process.env.NODE_ENV === 'production' ) {
 	} ) );
 
 	webpackConfig.plugins.push(
-		new webpack.DefinePlugin({
+		new webpack.DefinePlugin( {
 			'process.env': {
-			  NODE_ENV: JSON.stringify('production')
+				NODE_ENV: JSON.stringify( 'production' )
 			},
 			'CONFIG': {
 				baseURL: false
 			}
-		})
+		} )
 	);
 
 	webpackConfig.output.path = buildFolder;
 } else {
 
 	webpackConfig.plugins.push(
-		new webpack.DefinePlugin({
+		new webpack.DefinePlugin( {
 			'process.env': {
-			  NODE_ENV: JSON.stringify('development')
+				NODE_ENV: JSON.stringify( 'development' )
 			},
 			'CONFIG': {
-				baseURL: JSON.stringify(config.proxyURL)
+				baseURL: JSON.stringify( config.proxyURL )
 			}
-		})
+		} )
 	);
 
 

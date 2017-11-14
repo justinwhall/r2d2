@@ -1,4 +1,4 @@
-const initialState = {isLoading:true}
+const initialState = { isLoading: true }
 
 function page( state = initialState, action ) {
 
