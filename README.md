@@ -19,8 +19,9 @@ A production-ready React `bundle.js` file will be written to `dist/bundle.js`.
 
 ### Road Map
 
+* An actual home page component ( We still love you R2D2 )
 * Pagination
-* Excerpts
+* Excerpts`
 * SASS support
 * Custom post type support
 * Custom taxonomy support

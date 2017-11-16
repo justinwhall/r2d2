@@ -1,7 +1,7 @@
 import React from 'react'
 import { Component } from "react"
 import { Link } from 'react-router-dom'
-import { formatLink } from '../util/util'
+import { formatLink } from '../../util/util'
 
 const Article = props => (
 	<article className="r-too">

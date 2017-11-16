@@ -3,16 +3,15 @@ import { Component } from "react";
 import { Route, Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Article from '../article/article'
-
+import Article from '../../components/article/article'
 import {
-	getTermPosts,
-} from './termActions'
+	fetchMainContent,
+} from '../app/appActions'
 
 class Term extends Component {
 
 	componentWillMount() {
-		this.props.getTermPosts( 'http://r2d2.dev/wp-json/wp/v2/posts?category=' + this.props.match.params.termSlug )
+		this.props.fetchMainContent( 'http://r2d2.dev/wp-json/wp/v2/posts?category=' + this.props.match.params.termSlug )
 	}
 
 	getTermArticles() {
@@ -26,7 +25,7 @@ class Term extends Component {
 
 	render() {
 
-		const termPosts = this.getTermArticles();
+		const termPosts = this.props.mainContentIsLoading ? <div className="loader"></div> : this.getTermArticles();
 
 		return (
 			<div>
@@ -37,11 +36,12 @@ class Term extends Component {
 }
 
 const mapStateToProps = state => ( {
-	termPosts: state.term.termPosts
+	termPosts: state.app.mainContent,
+	mainContentIsLoading: state.app.mainContentIsLoading
 } )
 
 const mapDispatchToProps = dispatch => bindActionCreators( {
-	getTermPosts
+	fetchMainContent
 }, dispatch )
 
 export default connect(

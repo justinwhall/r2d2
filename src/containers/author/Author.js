@@ -3,16 +3,13 @@ import { Component } from "react";
 import { Route, Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Article from '../article/article'
-
-import {
-	getAuthorPosts,
-} from './authorActions'
+import Article from '../../components/article/article'
+import { fetchMainContent } from '../app/appActions'
 
 class Author extends Component {
 
 	componentWillMount() {
-		this.props.getAuthorPosts( '/wp-json/wp/v2/multiple-post-type?type[]=post&author_name=' + this.props.match.params.authorSlug )
+		this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?type[]=post&author_name=' + this.props.match.params.authorSlug )
 	}
 
 	getAuthorArticles() {
@@ -26,7 +23,9 @@ class Author extends Component {
 
 	render() {
 
-		const authorArticles = this.getAuthorArticles();
+		console.log( this.props );
+
+		const authorArticles = this.props.mainContentIsLoading ? <div className="loader"></div> : this.getAuthorArticles();
 
 		return (
 			<div>
@@ -37,11 +36,12 @@ class Author extends Component {
 }
 
 const mapStateToProps = state => ( {
-	authorPosts: state.author.authorPosts
+	authorPosts: state.app.mainContent,
+	mainContentIsLoading: state.app.mainContentIsLoading
 } )
 
 const mapDispatchToProps = dispatch => bindActionCreators( {
-	getAuthorPosts
+	fetchMainContent
 }, dispatch )
 
 export default connect(

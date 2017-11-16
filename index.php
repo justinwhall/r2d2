@@ -4,7 +4,7 @@
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<link rel="shortcut icon" href="/favicon.ico">
-		<title>React App</title>
+		<title><?php bloginfo('name')?></title>
 		<?php wp_head(); ?>
 
 		<style>
