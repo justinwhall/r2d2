@@ -11,6 +11,7 @@ const config = require( './config.json' );
 
 if ( process.env.NODE_ENV !== 'production' ) {
 	config.entry = [
+		'react-hot-loader/patch',
 		'webpack-hot-middleware/client',
 		'./src/index.js'
 	]
@@ -19,11 +20,7 @@ if ( process.env.NODE_ENV !== 'production' ) {
 }
 
 const webpackConfig = {
-	entry: [
-		'react-hot-loader/patch',
-		'webpack-hot-middleware/client',
-		'./src/index.js'
-	],
+	entry: config.entry,
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve( __dirname, 'dist' ),
@@ -58,15 +55,14 @@ const webpackConfig = {
 			}
 		]
 	},
-	devtool: 'cheap-module-inline-source-map',
+	// devtool: 'cheap-module-inline-source-map',
+	devtool: 'cheap-module-source-map',
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
-		// new webpack.NoErrorsPlugin(),
 	]
 };
 
 if ( process.env.NODE_ENV === 'production' ) {
-	const buildFolder = path.resolve( __dirname, 'dist' );
 
 	webpackConfig.plugins.push( new webpack.optimize.UglifyJsPlugin( {
 		"mangle": {
@@ -76,7 +72,7 @@ if ( process.env.NODE_ENV === 'production' ) {
 			"screw_ie8": true,
 			"warnings": false
 		},
-		"sourceMap": false
+		"sourceMap": true
 	} ) );
 
 	webpackConfig.plugins.push(
@@ -90,7 +86,6 @@ if ( process.env.NODE_ENV === 'production' ) {
 		} )
 	);
 
-	webpackConfig.output.path = buildFolder;
 } else {
 
 	webpackConfig.plugins.push(

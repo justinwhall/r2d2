@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
-import App from './containers/app/App';
+import App from './containers/app';
 import store, { history } from './store'
 
 
@@ -26,3 +26,4 @@ renderApp( App );
 if ( module.hot ) {
 	module.hot.accept( () => { renderApp( App ) } );
 }
+

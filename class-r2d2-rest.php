@@ -71,6 +71,7 @@ class WP_REST_Multiple_PostType_Controller extends WP_REST_Controller {
 		$args['post_parent__not_in'] = $request['parent_exclude'];
 		$args['post_status']         = $request['status'];
 		$args['s']                   = $request['search'];
+		$args['pagename']            = $request['pagename'];
 
 		// Param Validation.
 		if ( empty( $args['post_type']) || ! is_array( $args['post_type'] ) ) {

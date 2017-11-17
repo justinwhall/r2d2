@@ -1,13 +1,12 @@
 import React from 'react';
 import { Component } from "react";
 import { Route, Link, Switch, withRouter } from 'react-router-dom'
-import PagePost from '../pagePost/pagePost'
-import Term from '../term/Term'
-import Nav from '../nav/Nav'
-import Author from '../author/Author'
-import r2d2 from '../r2d2/r2d2'
+import Post from '../post'
+import Term from '../term'
+import Nav from '../nav'
+import Author from '../author'
+import r2d2 from '../r2d2'
 import '../../styles/App.css'
-import { formatLink } from '../util/util'
 
 class App extends Component {
 
@@ -42,9 +41,10 @@ class App extends Component {
 				<main>
 
 					<Route exact path="/" component={ r2d2 } />
-					<Route exact path="/:pageSlug" component={ PagePost } />
 					<Route exact path="/category/:termSlug" component={ Term } />
 					<Route exact path="/author/:authorSlug" component={ Author } />
+					<Route exact path="/page/**" component={ Post } />
+					<Route exact path="/:postSlug" component={ Post } />
 
 				</main>
 

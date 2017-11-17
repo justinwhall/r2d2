@@ -23,7 +23,8 @@ if ( ! defined( 'R2D2_APP' ) ) {
 	define( 'R2D2_APP', 'r2d2-react' );
 }
 
-include_once 'rest.php';
+include_once 'class-r2d2-rest.php';
+include_once 'class-r2d2-permalinks.php';
 
 if ( ! function_exists( 'r2d2_setup' ) ) :
 	/**

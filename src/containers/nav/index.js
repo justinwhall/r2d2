@@ -4,19 +4,19 @@ import { Route, Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {
-  getNavItems,
+	getNavItems,
 } from './navActions'
 
 class Nav extends Component {
 
 	componentWillMount() {
-		this.props.getNavItems('/wp-json/r2d2/menu')
+		this.props.getNavItems( '/wp-json/r2d2/menu' )
 	}
 
 	getNavLinks( navItems ) {
 
 		const nav = navItems.map( function ( item, i ) {
-			return <Link key={i} to={ item.uri }>{ item.title }</Link>
+			return <Link key={ i } to={ item.uri }>{ item.title }</Link>
 		} );
 
 		return nav;
@@ -27,21 +27,21 @@ class Nav extends Component {
 
 		return (
 			<nav>
-				{navLinks}
+				{ navLinks }
 			</nav>
 		);
 	}
 }
 
-const mapStateToProps = state => ({
-  navItems: state.nav.navItems
-})
+const mapStateToProps = state => ( {
+	navItems: state.nav.navItems
+} )
 
-const mapDispatchToProps = dispatch => bindActionCreators({
+const mapDispatchToProps = dispatch => bindActionCreators( {
 	getNavItems
-}, dispatch)
+}, dispatch )
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Nav)
+	mapStateToProps,
+	mapDispatchToProps
+)( Nav )

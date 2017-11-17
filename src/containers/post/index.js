@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
 import { fetchMainContent } from '../app/appActions'
 
-class Page extends Component {
+class Post extends Component {
 
 	componentDidMount() {
 		this.fetchContent();
@@ -26,12 +26,13 @@ class Page extends Component {
 
 	fetchContent() {
 		if ( !this.ignoreLastFetch ) {
-			this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?slug=' + this.props.match.params.pageSlug + '&type[]=post&type[]=page' )
+			const queryString = this.props.match.params.postSlug ? 'slug=' + this.props.match.params.postSlug : 'pagename=' + this.props.match.params[ 0 ];
+			this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?' + queryString + '&type[]=page&type[]=post' )
 		}
 	}
 
 	render() {
-		debugger
+
 		const content = this.props.mainContentIsLoading ? <div className="loader"></div> : <div dangerouslySetInnerHTML={ { __html: this.props.mainContent.content.rendered } } />
 
 		return (
@@ -56,4 +57,4 @@ const mapDispatchToProps = dispatch => bindActionCreators( {
 export default withRouter( connect(
 	mapStateToProps,
 	mapDispatchToProps
-)( Page ) )
+)( Post ) )
