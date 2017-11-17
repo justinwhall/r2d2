@@ -5,8 +5,6 @@ const initialState = {
 
 function app( state = initialState, action ) {
 
-	console.log( action );
-
 	switch ( action.type ) {
 
 		case 'FETCH_MAIN_CONTENT':

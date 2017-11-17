@@ -4,9 +4,8 @@ const BrowserSyncPlugin = require( 'browser-sync-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
 const webpackDevMiddleware = require( 'webpack-dev-middleware' );
-const webpackHotMiddleware = require( 'webpack-hot-middleware' );
+const ExtractTextPlugin = require( "extract-text-webpack-plugin" );
 const config = require( './config.json' );
-
 
 
 if ( process.env.NODE_ENV !== 'production' ) {
@@ -64,6 +63,11 @@ const webpackConfig = {
 
 if ( process.env.NODE_ENV === 'production' ) {
 
+	const extractSass = new ExtractTextPlugin( {
+		filename: "style.css",
+		disable: process.env.NODE_ENV === "development"
+	} );
+
 	webpackConfig.plugins.push( new webpack.optimize.UglifyJsPlugin( {
 		"mangle": {
 			"screw_ie8": true
@@ -83,8 +87,24 @@ if ( process.env.NODE_ENV === 'production' ) {
 			'CONFIG': {
 				baseURL: false
 			}
-		} )
+		} ),
+		extractSass
 	);
+
+	webpackConfig.module.rules.push(
+		{
+			test: /\.scss$/,
+			use: extractSass.extract( {
+				use: [ {
+					loader: "css-loader"
+				}, {
+					loader: "sass-loader"
+				}],
+				// use style-loader in development
+				fallback: "style-loader"
+			} )
+		}
+	)
 
 } else {
 
@@ -97,6 +117,19 @@ if ( process.env.NODE_ENV === 'production' ) {
 				baseURL: JSON.stringify( config.proxyURL )
 			}
 		} )
+	);
+
+	webpackConfig.module.rules.push(
+		{
+			test: /\.scss$/,
+			use: [ {
+				loader: "style-loader" // creates style nodes from JS strings
+			}, {
+				loader: "css-loader" // translates CSS into CommonJS
+			}, {
+				loader: "sass-loader" // compiles Sass to CSS
+			}]
+		}
 	);
 
 

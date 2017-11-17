@@ -24,9 +24,28 @@ class Post extends Component {
 		this.ignoreLastFetch = true
 	}
 
+	getQueryString() {
+
+		let q;
+		const { params } = this.props.match;
+
+		if ( Object.keys( params ).length === 0 ) {
+			// No params - show homepage
+			q = 'slug=' + r2d2Settings.frontPage;
+		} else if ( params.postSlug ) {
+			// We have a postSlug - it's a post
+			q = 'slug=' + params.postSlug;
+		} else {
+			// Else - it's a page
+			q = 'pagename=' + this.props.match.params[ 0 ];
+		}
+
+		return q;
+	}
+
 	fetchContent() {
 		if ( !this.ignoreLastFetch ) {
-			const queryString = this.props.match.params.postSlug ? 'slug=' + this.props.match.params.postSlug : 'pagename=' + this.props.match.params[ 0 ];
+			const queryString = this.getQueryString();
 			this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?' + queryString + '&type[]=page&type[]=post' )
 		}
 	}

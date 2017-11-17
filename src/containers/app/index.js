@@ -6,7 +6,16 @@ import Term from '../term'
 import Nav from '../nav'
 import Author from '../author'
 import r2d2 from '../r2d2'
-import '../../styles/App.css'
+import '../../styles/App.scss'
+
+const style = {
+	'fontFamily': 'Arial, Helvetica, sans-serif',
+	'color': 'rgb( 94, 94, 94 )',
+	'maxWidth': '900px',
+	'margin': '0 auto',
+	'padding': '20px',
+	'background': '#fff',
+}
 
 class App extends Component {
 
@@ -34,13 +43,13 @@ class App extends Component {
 	render() {
 
 		return (
-			<div>
+			<div style={ style }>
 
 				<Nav />
 
 				<main>
 
-					<Route exact path="/" component={ r2d2 } />
+					<Route exact path="/" component={ Post } />
 					<Route exact path="/category/:termSlug" component={ Term } />
 					<Route exact path="/author/:authorSlug" component={ Author } />
 					<Route exact path="/page/**" component={ Post } />
