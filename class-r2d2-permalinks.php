@@ -16,7 +16,6 @@ class R2D2_Permalinks {
 		add_action( 'admin_notices', array( $this, 'admin_permalinks_warning' ) );
 		add_action( 'init', array( $this, 'change_date' ) );
 		add_action( 'init', array( $this, 'change_paged' ) );
-		add_action( 'init', array( $this, 'change_page' ) );
 		add_action( 'init', array( $this, 'add_new_attachment' ) );
 		add_action( 'after_switch_theme', array( $this, 'update_permalinks' ), 11 );
 		add_action( 'template_redirect', array( $this, 'do_redirects' ) );
@@ -74,14 +73,6 @@ class R2D2_Permalinks {
 	public function change_paged() {
 		global $wp_rewrite;
 		$wp_rewrite->pagination_base = 'p';
-	}
-
-	/**
-	 * Add `page` prefix to single page permalink structure
-	 */
-	public function change_page() {
-		global $wp_rewrite;
-		$wp_rewrite->page_structure = '/page/%pagename%';
 	}
 
 	/**

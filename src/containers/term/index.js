@@ -3,21 +3,56 @@ import { Component } from "react";
 import { Route, Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Article from '../../components/article/article'
-import {
-	fetchMainContent,
-} from '../app/appActions'
+import Excerpt from '../../components/excerpt'
+import { fetchMainContent } from '../app/appActions'
 
 class Term extends Component {
 
-	componentWillMount() {
-		this.props.fetchMainContent( 'http://r2d2.dev/wp-json/wp/v2/posts?category=' + this.props.match.params.termSlug )
+	componentDidMount() {
+		this.fetchContent();
+	}
+
+	componentDidUpdate( prevProps ) {
+		let oldRoute = prevProps.location.pathname;
+		let newRoute = this.props.location.pathname;
+
+		if ( newRoute !== oldRoute ) {
+			this.fetchContent()
+		}
+	}
+
+	componentWillUnmount() {
+		this.ignoreLastFetch = true
+	}
+
+	getQueryString() {
+
+		let q;
+		const { params } = this.props.match;
+		// debugger;
+
+		if ( params.hasOwnProperty( 'tagSlug' ) ) {
+			// tags
+			q = 'tag=' + params.tagSlug;
+		} else {
+			// Categories
+			q = 'category_name=' + params.catSlug;
+		}
+
+		return q;
+	}
+
+	fetchContent() {
+		if ( !this.ignoreLastFetch ) {
+			const queryString = this.getQueryString();
+			this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?' + queryString + '&type[]=post' )
+		}
 	}
 
 	getTermArticles() {
 
 		const termArticles = this.props.termPosts.map( function ( item, i ) {
-			return <Article key={ i } { ...item } />
+			return <Excerpt key={ i } { ...item } />
 		} );
 
 		return termArticles;

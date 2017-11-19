@@ -6,35 +6,35 @@ import { connect } from 'react-redux'
 import Excerpt from '../../components/excerpt'
 import { fetchMainContent } from '../app/appActions'
 
-class Author extends Component {
+class Blog extends Component {
 
 	componentWillMount() {
-		this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?type[]=post&author_name=' + this.props.match.params.authorSlug )
+		this.props.fetchMainContent( '/wp-json/wp/v2/posts' )
 	}
 
-	getAuthorArticles() {
+	getblogArticles() {
 
-		const authorArticles = this.props.authorPosts.map( function ( item, i ) {
+		const blogArticles = this.props.blogPosts.map( function ( item, i ) {
 			return <Excerpt key={ i } { ...item } />
 		} );
 
-		return authorArticles;
+		return blogArticles;
 	}
 
 	render() {
 
-		const authorArticles = this.props.mainContentIsLoading ? <div className="loader"></div> : this.getAuthorArticles();
+		const blogArticles = this.props.mainContentIsLoading ? <div className="loader"></div> : this.getblogArticles();
 
 		return (
 			<div>
-				{ authorArticles }
+				{ blogArticles }
 			</div>
 		);
 	}
 }
 
 const mapStateToProps = state => ( {
-	authorPosts: state.app.mainContent,
+	blogPosts: state.app.mainContent,
 	mainContentIsLoading: state.app.mainContentIsLoading
 } )
 
@@ -45,4 +45,4 @@ const mapDispatchToProps = dispatch => bindActionCreators( {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)( Author )
+)( Blog )

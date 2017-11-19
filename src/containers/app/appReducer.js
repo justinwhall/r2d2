@@ -1,5 +1,5 @@
 const initialState = {
-	mainContent: [],
+	mainContent: false,
 	mainContentIsLoading: true
 }
 

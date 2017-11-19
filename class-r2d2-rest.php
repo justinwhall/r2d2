@@ -56,6 +56,9 @@ class WP_REST_Multiple_PostType_Controller extends WP_REST_Controller {
 		$args                        = array();
 		$args['author__in']          = $request['author__in'];
 		$args['author_name']         = $request['author_name'];
+		$args['category_name']       = $request['category_name'];
+		$args['tag']                 = $request['tag'];
+		$args['author__not_in']      = $request['author_exclude'];
 		$args['author__not_in']      = $request['author_exclude'];
 		$args['menu_order']          = $request['menu_order'];
 		$args['offset']              = $request['offset'];
@@ -101,6 +104,7 @@ class WP_REST_Multiple_PostType_Controller extends WP_REST_Controller {
 			$args['post_type'] = array( $args['post_type'] );
 		}
 
+
 		/**
 		 * Filter the query arguments for a request.
 		 *
@@ -134,6 +138,8 @@ class WP_REST_Multiple_PostType_Controller extends WP_REST_Controller {
 				);
 			}
 		}
+
+
 
 		// Execute the query.
 		$posts_query = new WP_Query();
@@ -296,6 +302,7 @@ class WP_REST_Multiple_PostType_Controller extends WP_REST_Controller {
 		// Define our own in addition to WP's normal vars.
 		$rest_valid = array(
 			'author__in',
+			'category__name',
 			'author__not_in',
 			'ignore_sticky_posts',
 			'menu_order',

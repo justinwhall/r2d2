@@ -1,4 +1,6 @@
 import React from 'react'
+import NotFound from '../notFound'
+import Article from '../../components/article'
 import { Component } from "react";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -45,20 +47,21 @@ class Post extends Component {
 
 	fetchContent() {
 		if ( !this.ignoreLastFetch ) {
-			const queryString = this.getQueryString();
+			const queryString = this.getQueryString()
 			this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?' + queryString + '&type[]=page&type[]=post' )
 		}
 	}
 
 	render() {
 
-		const content = this.props.mainContentIsLoading ? <div className="loader"></div> : <div dangerouslySetInnerHTML={ { __html: this.props.mainContent.content.rendered } } />
+		if ( this.props.mainContentIsLoading ) {
+			return <div className="loader"></div>;
+		}
 
-		return (
-			<div >
-				{ content }
-			</div>
-		);
+		const content = this.props.mainContent ? <Article {...this.props.mainContent} /> : <NotFound />;
+
+		return content;
+
 	}
 }
 
