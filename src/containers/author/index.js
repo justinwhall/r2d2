@@ -4,12 +4,28 @@ import { Route, Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Excerpt from '../../components/excerpt'
+import Pagination from '../pagination'
 import { fetchMainContent } from '../app/appActions'
 
 class Author extends Component {
 
-	componentWillMount() {
-		this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?type[]=post&author_name=' + this.props.match.params.authorSlug )
+	componentDidMount() {
+		this.fetchContent();
+	}
+
+	componentDidUpdate( prevProps ) {
+		let oldRoute = prevProps.location.pathname;
+		let newRoute = this.props.location.pathname;
+
+		if ( newRoute !== oldRoute ) {
+			this.fetchContent()
+			console.log( this.props );
+
+		}
+	}
+
+	componentWillUnmount() {
+		this.ignoreLastFetch = true
 	}
 
 	getAuthorArticles() {
@@ -21,6 +37,13 @@ class Author extends Component {
 		return authorArticles;
 	}
 
+	fetchContent() {
+		if ( !this.ignoreLastFetch ) {
+			let offSet = this.props.match.params.offSet ? this.props.match.params.offSet : 1;
+			this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?type[]=post&author_name=' + this.props.match.params.authorSlug + '&page=' + offSet )
+		}
+	}
+
 	render() {
 
 		const authorArticles = this.props.mainContentIsLoading ? <div className="loader"></div> : this.getAuthorArticles();
@@ -28,12 +51,14 @@ class Author extends Component {
 		return (
 			<div>
 				{ authorArticles }
+				<Pagination { ...this.props } />
 			</div>
 		);
 	}
 }
 
 const mapStateToProps = state => ( {
+	numPosts: state.app.numPosts,
 	authorPosts: state.app.mainContent,
 	mainContentIsLoading: state.app.mainContentIsLoading
 } )

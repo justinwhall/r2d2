@@ -1,6 +1,7 @@
 const initialState = {
 	mainContent: false,
-	mainContentIsLoading: true
+	mainContentIsLoading: true,
+	numbPosts: 0
 }
 
 function app( state = initialState, action ) {
@@ -12,6 +13,12 @@ function app( state = initialState, action ) {
 				...state,
 				mainContent: action.mainContent,
 				mainContentIsLoading: false
+			}
+
+		case 'SET_NUM_POSTS':
+			return {
+				...state,
+				numPosts: action.numPosts,
 			}
 
 		case 'MAIN_CONTENT_IS_LOADING':

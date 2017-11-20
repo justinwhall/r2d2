@@ -1,9 +1,19 @@
 
 function fetchMainContentSuccess( mainContent ) {
+
 	return dispatch => {
 		dispatch( {
 			type: 'FETCH_MAIN_CONTENT',
 			mainContent
+		} )
+	}
+}
+
+function setNumPosts( numPosts ) {
+	return dispatch => {
+		dispatch( {
+			type: 'SET_NUM_POSTS',
+			numPosts
 		} )
 	}
 }
@@ -16,6 +26,7 @@ export function mainContentIsLoading( bool ) {
 }
 
 export function fetchMainContent( url ) {
+
 	return ( dispatch ) => {
 
 		dispatch( mainContentIsLoading( true ) );
@@ -25,10 +36,12 @@ export function fetchMainContent( url ) {
 				if ( !response.ok ) {
 					throw Error( response.statusText );
 				}
-
 				return response;
 			} )
-			.then( ( response ) => response.json() )
+			.then( ( response ) => {
+				dispatch( setNumPosts( response.headers.get( 'x-wp-total' ) ) );
+				return response.json();
+			} )
 			.then( ( mainContent ) => dispatch( fetchMainContentSuccess( mainContent ) ) )
 		// .catch(() => dispatch(itemsHasErrored(true)));
 	};
