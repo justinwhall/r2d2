@@ -4,6 +4,7 @@ import { Route, Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Excerpt from '../../components/excerpt'
+import Pagination from '../pagination'
 import { fetchMainContent } from '../app/appActions'
 
 class Term extends Component {
@@ -65,12 +66,14 @@ class Term extends Component {
 		return (
 			<div>
 				{ termPosts }
+				<Pagination { ...this.props } />
 			</div>
 		);
 	}
 }
 
 const mapStateToProps = state => ( {
+	numPosts: state.app.numPosts,
 	termPosts: state.app.mainContent,
 	mainContentIsLoading: state.app.mainContentIsLoading
 } )

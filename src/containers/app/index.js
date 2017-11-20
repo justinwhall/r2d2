@@ -45,6 +45,7 @@ class App extends Component {
 					<Switch>
 						<Route path="/:url*" exact strict render={ props => <Redirect to={ `${ props.location.pathname }/` } /> } />
 						<Route exact path="/" component={ Post } />
+						<Route exact path="/category/:catSlug/page/:offSet" component={ Term } />
 						<Route exact path="/category/:catSlug" component={ Term } />
 						<Route exact path="/tag/:tagSlug" component={ Term } />
 						<Route exact path="/author/:authorSlug/page/:offSet" component={ Author } />

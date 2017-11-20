@@ -2,7 +2,9 @@
 
 body {
 	font-size: 2rem;
-	background: $lgrey;
+	background-color: $lgrey;
+	background-repeat: no-repeat;
+	background-position: 0 100%;
 }
 
 #site-wrapper {
@@ -11,8 +13,19 @@ body {
 	margin: 0 auto;
 	background: #fff;
 	padding: 20px;
+	z-index: $z-index-1;
+	position: relative;
 }
 
 img {
 	max-width: 100%;
+	height: auto;
+}
+
+#r2d2 {
+	position: absolute;
+	right: 10px;
+	bottom: 0px;
+	opacity: 0.2;
+	filter: grayscale(100%);
 }

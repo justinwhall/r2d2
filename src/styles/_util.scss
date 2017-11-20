@@ -126,28 +126,7 @@
 // Flushing
 // Deprecate?
 // ====================
-.p-top-bottom-flush {
-  padding-top: 0;
-  padding-bottom: 0;
-}
 
-.p-top-flush {
-  padding-top: 0;
-}
-
-.p-bottom-flush {
-  padding-bottom: 0;
-}
-
-.flush-ends,
-.flush-top {
-  padding-top: 0;
-}
-
-.flush-ends,
-.flush-bottom {
-  padding-bottom: 0;
-}
 
 // ====================
 // Spacers
@@ -255,7 +234,6 @@
 .m-bottom-tall {
   margin-bottom: $scaleup-3;
 }
-
 
 // Sized Margins - Top
 .m-top-1 {
@@ -431,7 +409,6 @@
 // ====================
 // Width
 // ====================
-
 .w-100 {
   width: 100%;
 }
@@ -442,4 +419,11 @@
 
 .w-25 {
   width: 25%;
+}
+
+// ====================
+// Misc
+// ====================
+.o-hidden {
+	overflow: hidden;
 }
