@@ -4,6 +4,7 @@ import { Route, Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Excerpt from '../../components/excerpt'
+import Title from '../../components/title'
 import Pagination from '../pagination'
 import { fetchMainContent } from '../app/appActions'
 
@@ -43,6 +44,22 @@ class Term extends Component {
 		return q;
 	}
 
+	getTitle() {
+
+		let title;
+		const { params } = this.props.match;
+
+		if ( params.hasOwnProperty( 'tagSlug' ) ) {
+			// tags
+			title = params.tagSlug.replace( /-/g, ' ' );
+		} else {
+			// Categories
+			title = params.catSlug.replace( /-/g, ' ' );
+		}
+
+		return title;
+	}
+
 	fetchContent() {
 		if ( !this.ignoreLastFetch ) {
 			const queryString = this.getQueryString();
@@ -62,9 +79,16 @@ class Term extends Component {
 	render() {
 
 		const termPosts = this.props.mainContentIsLoading ? <div className="loader"></div> : this.getTermArticles();
+		const title = this.getTitle();
 
 		return (
 			<div>
+				{/* <header className="m-bottom-9 header">
+					<h1 className="m-bottom-none">{ title }</h1>
+					<div className="bar"></div>
+					<small className="berry ">Archive</small>
+				</header> */}
+				<Title title={ title } subHead="Archive" />
 				{ termPosts }
 				<Pagination { ...this.props } />
 			</div>

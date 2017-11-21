@@ -1,12 +1,11 @@
 import React from 'react'
 import { Component } from "react"
 import { formatLink } from '../../util/util'
+import Title from '../../components/title'
 
 const Article = props => (
 	<article className="r-too">
-		<h1 className="p-bottom-none">
-			{ props.title.rendered }
-		</h1>
+		<Title title={ props.title.rendered } />
 		<div className="post-content" dangerouslySetInnerHTML={ { __html: props.content.rendered } }></div>
 	</article>
 )

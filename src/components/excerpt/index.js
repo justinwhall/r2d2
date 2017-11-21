@@ -6,11 +6,11 @@ import Meta from '../meta';
 
 const Excerpt = props => (
 	<article className="r-too">
-		<h1 className="m-bottom-none">
+		<h2 className="m-bottom-none">
 			<Link to={ formatLink( props.link ) }  >
 				{ props.title.rendered }
 			</Link>
-		</h1>
+		</h2>
 		<Meta { ...props._embedded } />
 		<div className="post-content" dangerouslySetInnerHTML={ { __html: props.excerpt.rendered } }></div>
 	</article>

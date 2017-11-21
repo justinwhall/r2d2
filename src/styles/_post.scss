@@ -1,8 +1,29 @@
+.header h1 {
+	text-transform: capitalize;
+}
+.header small {
+	font-weight: 400;
+	color: $grey;
+}
+
+.bar {
+	width: 57px;
+	height: 4px;
+	background: $berry;
+}
+
 .meta {
 	font-size: $scaleup-2;
 }
 
 .meta a {
 	font-weight:  400;
-	color: darken($sky, 20)
+	font-size: $scaleup-1;
+	// color: lighten($sky, 20)
+	color: darken( $grey, 20 );
+	text-transform: uppercase;
+}
+
+article {
+	margin-bottom: 60px;
 }

@@ -3,9 +3,10 @@ import { Component } from "react";
 import { Route, Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { POSTS_PER_PAGE } from "../../constants/settings"
+import { POSTS_PER_PAGE, BLOG_PAGE } from "../../constants/settings"
 import Excerpt from '../../components/excerpt'
 import Pagination from '../pagination'
+import Title from '../../components/title'
 import { fetchMainContent } from '../app/appActions'
 
 
@@ -55,6 +56,7 @@ class Blog extends Component {
 
 		return (
 			<div>
+				<Title title={ BLOG_PAGE.replace( /-/g, ' ' ) } />
 				{ blogArticles }
 				<Pagination { ...this.props } />
 			</div>
