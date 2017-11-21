@@ -12,8 +12,8 @@ class Pagination extends Component {
 		const nextPage = hasOffset ? parseInt( params.offSet ) + 1 : 2;
 		const path = hasOffset ? pathName.replace( params.offSet, nextPage ) : pathName + 'page/' + nextPage + '/';
 
-		// Out of pages  - no need for nextPage link
-		if ( hasOffset && params.offSet * POSTS_PER_PAGE > parseInt( this.props.numPosts ) ) {
+		// Out of pages or all posts fit on one page  - no need for nextPage link
+		if ( hasOffset && params.offSet * POSTS_PER_PAGE > parseInt( this.props.numPosts ) || POSTS_PER_PAGE >= this.props.numPosts ) {
 			return null
 		}
 

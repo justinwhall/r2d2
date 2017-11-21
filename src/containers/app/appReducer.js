@@ -1,14 +1,24 @@
+import { LOCATION_CHANGE } from 'react-router-redux'
+
 const initialState = {
 	mainContent: false,
 	mainContentIsLoading: true,
-	numbPosts: 0
+	numPosts: 0
 }
 
 function app( state = initialState, action ) {
 
 	switch ( action.type ) {
 
+		case LOCATION_CHANGE:
+
+			return {
+				...state,
+				mainContentIsLoading: true
+			}
+
 		case 'FETCH_MAIN_CONTENT':
+
 			return {
 				...state,
 				mainContent: action.mainContent,

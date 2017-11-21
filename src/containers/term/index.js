@@ -46,7 +46,7 @@ class Term extends Component {
 	fetchContent() {
 		if ( !this.ignoreLastFetch ) {
 			const queryString = this.getQueryString();
-			this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?' + queryString + '&type[]=post' )
+			this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?' + queryString + '&type[]=post&_embed=true' )
 		}
 	}
 

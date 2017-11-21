@@ -11,57 +11,33 @@ import NotFound from '../notFound'
 import '../../styles/style.scss'
 
 
-class App extends Component {
+const App = props => (
 
-	constructor( props ) {
-		super( props );
+	<div id="site-wrapper">
 
-		this.state = {
-			locationKey: this.props.location.key
-		};
-	}
+		<Nav />
 
-	componentDidUpdate( prevProps ) {
-		if ( this.props.location.pathname !== prevProps.location.pathname ) {
-			this.onRouteChanged();
-		}
-	}
+		<main>
 
-	onRouteChanged() {
-		this.setState( {
-			locationKey: this.props.location.key
-		} )
-	}
+			<Switch>
+				<Route path="/:url*" exact strict render={ props => <Redirect to={ `${ props.location.pathname }/` } /> } />
+				<Route exact path="/" component={ Post } />
+				<Route exact path="/category/:catSlug/page/:offSet" component={ Term } />
+				<Route exact path="/category/:catSlug" component={ Term } />
+				<Route exact path="/tag/:tagSlug" component={ Term } />
+				<Route exact path="/author/:authorSlug/page/:offSet" component={ Author } />
+				<Route exact path="/author/:authorSlug" component={ Author } />
+				<Route exact path={ `/${ BLOG_PAGE }/page/:offSet` } component={ Blog } />
+				<Route exact path={ `/${ BLOG_PAGE }/` } component={ Blog } />
+				<Route exact path={ `/${ BLOG_PAGE }` } component={ Blog } />
+				<Route exact path="/:postSlug" component={ Post } />
+				<Route exact path="/**" component={ Post } />
+				<Route component={ NotFound } />
+			</Switch>
 
-	render() {
+		</main>
 
-		return (
-			<div id="site-wrapper">
-
-				<Nav />
-
-				<main>
-
-					<Switch>
-						<Route path="/:url*" exact strict render={ props => <Redirect to={ `${ props.location.pathname }/` } /> } />
-						<Route exact path="/" component={ Post } />
-						<Route exact path="/category/:catSlug/page/:offSet" component={ Term } />
-						<Route exact path="/category/:catSlug" component={ Term } />
-						<Route exact path="/tag/:tagSlug" component={ Term } />
-						<Route exact path="/author/:authorSlug/page/:offSet" component={ Author } />
-						<Route exact path="/author/:authorSlug" component={ Author } />
-						<Route exact path={ `/${ BLOG_PAGE }/page/:offSet` } component={ Blog } />
-						<Route exact path={ `/${ BLOG_PAGE }` } component={ Blog } />
-						<Route exact path="/:postSlug" component={ Post } />
-						<Route exact path="/**" component={ Post } />
-						<Route component={ NotFound } />
-					</Switch>
-
-				</main>
-
-			</div>
-		);
-	}
-}
+	</div>
+)
 
 export default withRouter( App )

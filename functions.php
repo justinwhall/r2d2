@@ -182,6 +182,7 @@ function r2d2_inline_settings() {
 			'userDisplay' => $user ? $user->display_name : '',
 			'frontPage' => $front_page_slug,
 			'blog' => $blog_page_slug,
+			'postsPerPage' => get_option( 'posts_per_page' ),
 			'URL' => array(
 				'base' => esc_url_raw( $url ),
 				'path' => $path

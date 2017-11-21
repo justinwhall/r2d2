@@ -3,9 +3,11 @@ import { Component } from "react";
 import { Route, Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { POSTS_PER_PAGE } from "../../constants/settings"
 import Excerpt from '../../components/excerpt'
 import Pagination from '../pagination'
 import { fetchMainContent } from '../app/appActions'
+
 
 class Blog extends Component {
 
@@ -38,7 +40,7 @@ class Blog extends Component {
 	fetchContent() {
 		if ( !this.ignoreLastFetch ) {
 			let offSet = this.props.match.params.offSet ? this.props.match.params.offSet : 1;
-			this.props.fetchMainContent( '/wp-json/wp/v2/posts?page=' + offSet )
+			this.props.fetchMainContent( '/wp-json/wp/v2/posts?page=' + offSet + '&per_page=' + POSTS_PER_PAGE + '&_embed=true' )
 		}
 	}
 

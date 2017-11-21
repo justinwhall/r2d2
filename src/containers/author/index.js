@@ -40,7 +40,7 @@ class Author extends Component {
 	fetchContent() {
 		if ( !this.ignoreLastFetch ) {
 			let offSet = this.props.match.params.offSet ? this.props.match.params.offSet : 1;
-			this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?type[]=post&author_name=' + this.props.match.params.authorSlug + '&page=' + offSet )
+			this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?type[]=post&author_name=' + this.props.match.params.authorSlug + '&page=' + offSet + '&_embed=true' )
 		}
 	}
 
