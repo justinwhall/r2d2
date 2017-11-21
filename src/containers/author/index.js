@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import Excerpt from '../../components/excerpt'
 import Pagination from '../pagination'
 import { fetchMainContent } from '../app/appActions'
+import { Helmet } from "react-helmet"
+import { SITE_TITLE } from "../../constants/settings"
 
 class Author extends Component {
 
@@ -50,6 +52,9 @@ class Author extends Component {
 
 		return (
 			<div>
+				<Helmet>
+					<title>{ this.props.match.params.authorSlug.replace( /-/g, ' ' ) + ' | Author at ' + SITE_TITLE }</title>
+				</Helmet>
 				{ authorArticles }
 				<Pagination { ...this.props } />
 			</div>

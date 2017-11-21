@@ -8,6 +8,8 @@ import Excerpt from '../../components/excerpt'
 import Pagination from '../pagination'
 import Title from '../../components/title'
 import { fetchMainContent } from '../app/appActions'
+import { Helmet } from "react-helmet";
+import { SITE_TITLE } from "../../constants/settings"
 
 
 class Blog extends Component {
@@ -53,10 +55,14 @@ class Blog extends Component {
 		}
 
 		const blogArticles = this.getblogArticles();
+		const title = BLOG_PAGE.replace( /-/g, ' ' );
 
 		return (
 			<div>
-				<Title title={ BLOG_PAGE.replace( /-/g, ' ' ) } />
+				<Helmet>
+					<title>{ title + ' | ' + SITE_TITLE }</title>
+				</Helmet>
+				<Title title={ title } />
 				{ blogArticles }
 				<Pagination { ...this.props } />
 			</div>

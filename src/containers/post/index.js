@@ -5,7 +5,9 @@ import { Component } from "react";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
+import { Helmet } from "react-helmet"
 import { fetchMainContent } from '../app/appActions'
+import { SITE_TITLE } from "../../constants/settings"
 
 class Post extends Component {
 
@@ -60,7 +62,14 @@ class Post extends Component {
 
 		const content = this.props.mainContent ? <Article {...this.props.mainContent} /> : <NotFound />;
 
-		return content;
+		return (
+			<div>
+				<Helmet>
+					<title>{ this.props.mainContent.title.rendered + ' | ' + SITE_TITLE }</title>
+				</Helmet>
+				{ content }
+			</div>
+		)
 
 	}
 }

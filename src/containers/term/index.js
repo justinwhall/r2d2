@@ -7,6 +7,8 @@ import Excerpt from '../../components/excerpt'
 import Title from '../../components/title'
 import Pagination from '../pagination'
 import { fetchMainContent } from '../app/appActions'
+import { Helmet } from "react-helmet";
+import { SITE_TITLE } from "../../constants/settings"
 
 class Term extends Component {
 
@@ -83,11 +85,9 @@ class Term extends Component {
 
 		return (
 			<div>
-				{/* <header className="m-bottom-9 header">
-					<h1 className="m-bottom-none">{ title }</h1>
-					<div className="bar"></div>
-					<small className="berry ">Archive</small>
-				</header> */}
+				<Helmet>
+					<title>{ title + ' | ' + SITE_TITLE }</title>
+				</Helmet>
 				<Title title={ title } subHead="Archive" />
 				{ termPosts }
 				<Pagination { ...this.props } />
