@@ -1,47 +1,129 @@
 import React from 'react'
 import { Component } from "react";
-import { Route, Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {
-	getNavItems,
-} from './navActions'
+import { withRouter } from 'react-router-dom'
+import { fetchMainContent } from '../app/appActions'
+import { Helmet } from "react-helmet"
+import SearchForm from './form'
+import Excerpt from '../../components/excerpt'
+import { SITE_TITLE } from "../../constants/settings"
 
-class Nav extends Component {
+class Search extends Component {
 
-	componentWillMount() {
-		this.props.getNavItems( '/wp-json/r2d2/menu' )
+	constructor( props ) {
+		super( props );
+
+		this.getQueryValue = this.getQueryValue.bind( this );
+		this.query = this.query.bind( this );
 	}
 
-	getNavLinks( navItems ) {
+	componentDidMount() {
+		this.fetchContent();
+	}
 
-		const nav = navItems.map( function ( item, i ) {
-			return <Link key={ i } to={ item.uri }>{ item.title }</Link>
+	componentDidUpdate( prevProps ) {
+		let oldRoute = prevProps.location.pathname;
+		let newRoute = this.props.location.pathname;
+
+		if ( newRoute !== oldRoute ) {
+			this.fetchContent()
+		}
+	}
+
+	componentWillUnmount() {
+		this.ignoreLastFetch = true
+	}
+
+	getSearchResults() {
+
+		const searchResults = this.props.searchResults.map( function ( item, i ) {
+			return <Excerpt key={ i } { ...item } />
 		} );
 
-		return nav;
+		return searchResults.length ? searchResults : 'Nothing found...';
+	}
+
+	fetchContent() {
+		if ( !this.ignoreLastFetch ) {
+			this.props.fetchMainContent( '/wp-json/wp/v2/posts?_embed=true&search=' + this.getQueryValue() )
+		}
+	}
+
+	query( event ) {
+		event.preventDefault();
+
+		const q = this.getQueryValue()
+		const url = `/search/${ q }`;
+
+		this.props.history.push( url );
+	}
+
+	getQueryValue() {
+
+		let query
+		const { params } = this.props.match
+
+		if ( 'undefined' !== typeof this.refs.searchForm ) {
+
+			query = this.refs.searchForm.getValue();
+
+		} else if ( params.hasOwnProperty( 'query' ) ) {
+
+			query = params.query.replace( /\+/g, ' ' );
+
+		} else {
+
+			query = '';
+
+		}
+
+		return query;
 	}
 
 	render() {
-		let navLinks = this.props.navItems ? this.getNavLinks( this.props.navItems ) : false;
+
+		if ( this.props.mainContentIsLoading ) {
+			return null;
+		}
+
+		const query = this.props.match.params.query
+		const initialQuery = this.getQueryValue()
+		const results = initialQuery.length ? this.getSearchResults() : null
+		const h1 = initialQuery.length ? `You searched for "${ initialQuery }"` : 'Go ahead and search for something'
 
 		return (
-			<nav>
-				{ navLinks }
-			</nav>
-		);
+			<div>
+				<Helmet>
+					<title>{ 'Search | ' + SITE_TITLE }</title>
+				</Helmet>
+				<h1> { h1 }</h1>
+
+				<SearchForm ref='searchForm' initialQuery={ initialQuery } onSubmit={ this.query } />
+
+				<div>
+					{ results }
+				</div>
+			</div>
+		)
+
 	}
 }
 
-const mapStateToProps = state => ( {
-	navItems: state.nav.navItems
-} )
+const mapStateToProps = function ( state, ownProps ) {
+	// console.log( ownProps );
+
+	return {
+		mainContentIsLoading: state.app.mainContentIsLoading,
+		searchResults: state.app.mainContent
+	}
+}
 
 const mapDispatchToProps = dispatch => bindActionCreators( {
-	getNavItems
+	fetchMainContent
 }, dispatch )
 
-export default connect(
+export default withRouter( connect(
 	mapStateToProps,
 	mapDispatchToProps
-)( Nav )
+)( Search ) )

@@ -32,6 +32,7 @@ class Blog extends Component {
 	}
 
 	getblogArticles() {
+		console.log( this.props.blogPosts );
 
 		const blogArticles = this.props.blogPosts.map( function ( item, i ) {
 			return <Excerpt key={ i } { ...item } />

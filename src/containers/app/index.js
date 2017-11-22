@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { BLOG_PAGE } from '../../constants/settings'
 import Post from '../post'
+import Search from '../search'
 import Blog from '../blog'
 import Term from '../term'
 import Nav from '../nav'
@@ -41,6 +42,8 @@ class App extends Component {
 						<Route exact path={ `/${ BLOG_PAGE }/page/:offSet` } component={ Blog } />
 						<Route exact path={ `/${ BLOG_PAGE }/` } component={ Blog } />
 						<Route exact path={ `/${ BLOG_PAGE }` } component={ Blog } />
+						<Route exact path="/search/:query" component={ Search } />
+						<Route exact path="/search" component={ Search } />
 						<Route exact path="/:postSlug" component={ Post } />
 						<Route exact path="/**" component={ Post } />
 						<Route component={ NotFound } />

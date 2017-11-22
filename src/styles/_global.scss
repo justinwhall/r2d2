@@ -41,3 +41,27 @@ img {
 	opacity: 0.1;
 	filter: grayscale(100%);
 }
+
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+// Forms and buttons
+.button, button, input[type='button'], input[type='reset'], input[type='submit'] {
+	background-color: $berry;
+	border: 0.1rem solid $berry;
+}
+
+.search-form .search-field {
+	font-size: $scaleup-2;
+	color: darken($grey, 30)
+}
