@@ -8,6 +8,8 @@ import Pagination from '../pagination'
 import { fetchMainContent } from '../app/appActions'
 import { Helmet } from "react-helmet"
 import { SITE_TITLE } from "../../constants/settings"
+import Title from '../../components/title'
+
 
 class Author extends Component {
 
@@ -48,13 +50,15 @@ class Author extends Component {
 
 	render() {
 
-		const authorArticles = this.props.mainContentIsLoading ? null : this.getAuthorArticles();
+		const authorArticles = this.props.mainContentIsLoading ? null : this.getAuthorArticles()
+		const title = this.props.match.params.authorSlug.replace( /-/g, ' ' )
 
 		return (
 			<div>
 				<Helmet>
-					<title>{ this.props.match.params.authorSlug.replace( /-/g, ' ' ) + ' | Author at ' + SITE_TITLE }</title>
+					<title>{ title + ' | Author at ' + SITE_TITLE }</title>
 				</Helmet>
+				<Title title={ title } subHead="Author Archive" />
 				{ authorArticles }
 				<Pagination { ...this.props } />
 			</div>
