@@ -57,15 +57,17 @@ class Post extends Component {
 	render() {
 
 		if ( this.props.mainContentIsLoading ) {
-			return <div className="loader"></div>;
+			return null;
 		}
 
 		const content = this.props.mainContent ? <Article {...this.props.mainContent} /> : <NotFound />;
+		const title = this.props.mainContent ? this.props.mainContent.title.rendered : 'Page Not Found';
+
 
 		return (
 			<div>
 				<Helmet>
-					<title>{ this.props.mainContent.title.rendered + ' | ' + SITE_TITLE }</title>
+					<title>{ title + ' | ' + SITE_TITLE }</title>
 				</Helmet>
 				{ content }
 			</div>

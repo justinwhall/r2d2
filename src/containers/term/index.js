@@ -80,7 +80,7 @@ class Term extends Component {
 
 	render() {
 
-		const termPosts = this.props.mainContentIsLoading ? <div className="loader"></div> : this.getTermArticles();
+		const termPosts = this.props.mainContentIsLoading ? null : this.getTermArticles();
 		const title = this.getTitle();
 
 		return (

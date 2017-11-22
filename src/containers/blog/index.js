@@ -51,7 +51,7 @@ class Blog extends Component {
 
 		// No response yet, show loader
 		if ( this.props.mainContentIsLoading ) {
-			return <div className="loader"></div>;
+			return null
 		}
 
 		const blogArticles = this.getblogArticles();

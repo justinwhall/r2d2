@@ -3,7 +3,6 @@ import { Component } from "react"
 import { Link } from 'react-router-dom'
 import { formatLink } from '../../util/util'
 
-
 const Meta = props => (
 	<div className="r-too m-bottom-2 meta">
 		<div className="author">

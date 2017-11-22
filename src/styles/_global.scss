@@ -13,8 +13,20 @@ body {
 	margin: 0 auto;
 	background: #fff;
 	padding: 20px;
-	z-index: $z-index-1;
+	z-index: $z-index-2;
 	position: relative;
+}
+
+// Page transitions
+#site-wrapper.isLoading .main,
+#site-wrapper.isLoading #sidebar-wrap {
+	opacity: 0;
+}
+
+#site-wrapper.loaded .main,
+#site-wrapper.loaded #sidebar-wrap {
+	opacity: 1;
+	transition: all 200ms ease;
 }
 
 img {

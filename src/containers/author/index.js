@@ -48,7 +48,7 @@ class Author extends Component {
 
 	render() {
 
-		const authorArticles = this.props.mainContentIsLoading ? <div className="loader"></div> : this.getAuthorArticles();
+		const authorArticles = this.props.mainContentIsLoading ? null : this.getAuthorArticles();
 
 		return (
 			<div>

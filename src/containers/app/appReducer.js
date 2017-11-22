@@ -26,15 +26,17 @@ function app( state = initialState, action ) {
 			}
 
 		case 'SET_NUM_POSTS':
+
 			return {
 				...state,
 				numPosts: action.numPosts,
 			}
 
 		case 'MAIN_CONTENT_IS_LOADING':
+
 			return {
 				...state,
-				mainContentIsLoading: true,
+				mainContentIsLoading: action.mainContentIsLoading
 			}
 
 		default:

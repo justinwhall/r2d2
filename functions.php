@@ -103,6 +103,23 @@ endif;
 add_action( 'after_setup_theme', 'r2d2_setup' );
 
 /**
+ * Register our sidebars and widgetized areas.
+ *
+ */
+function r2d2_widgets_init() {
+
+	register_sidebar( array(
+		'name'          => 'Footer',
+		'id'            => 'r2d2_footer',
+		'before_widget' => '<div>',
+		'after_widget'  => '</div>',
+		'after_title'   => '</h2>',
+	) );
+
+}
+add_action( 'widgets_init', 'r2d2_widgets_init' );
+
+/**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
  * Priority 0 to make it available to lower priority callbacks.
