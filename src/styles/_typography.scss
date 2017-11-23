@@ -1,6 +1,5 @@
 a{
-	color: $sky;
-
+	color: $berry;
 }
 
 h1 {
@@ -8,4 +7,8 @@ h1 {
 	font-size: $scaleup-8;
 	color: $dblue;
 	margin-top: 0;
+}
+
+.widgettitle {
+	margin-bottom: $scaledown-4;
 }

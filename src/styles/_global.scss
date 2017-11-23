@@ -2,29 +2,36 @@
 
 body {
 	font-size: 2rem;
-	background-color: $lgrey;
 	background-repeat: no-repeat;
 	background-position: 0 100%;
+	margin: 0 0 0 0;
+	background: #fff;
 }
 
 #site-wrapper {
 	color: $dgrey;
-	max-width: 1200px;
 	margin: 0 auto;
-	background: #fff;
-	padding: 20px;
 	z-index: $z-index-2;
 	position: relative;
 }
 
+.container {
+	max-width: 1040px;
+	margin: 0 auto;
+}
+
+.main {
+	margin-top: $scaleup-10;
+}
+
 // Page transitions
 #site-wrapper.isLoading .main,
-#site-wrapper.isLoading #sidebar-wrap {
+#site-wrapper.isLoading .sidebar-container {
 	opacity: 0;
 }
 
 #site-wrapper.loaded .main,
-#site-wrapper.loaded #sidebar-wrap {
+#site-wrapper.loaded .sidebar-container {
 	opacity: 1;
 	transition: all 200ms ease;
 }
@@ -40,6 +47,23 @@ img {
 	bottom: 0px;
 	opacity: 0.1;
 	filter: grayscale(100%);
+	transition: all 200ms ease;
+	display: block;
+	width: 320px;
+}
+
+@media (max-width: 1550px) {
+	#r2d2 {
+		width: 180px;
+		right: -25px;
+		transition: all 200ms ease;
+	}
+}
+
+@media (max-width: 1255px) {
+	#r2d2 {
+		opacity: 0.04;
+	}
 }
 
 .screen-reader-text {
@@ -55,6 +79,12 @@ img {
 	word-wrap: normal !important;
 }
 
+.sidebar-inner {
+	margin-top: $scaleup-8;
+	padding-top: $scaleup-8;
+	border-top: 1px solid $metal;
+}
+
 // Forms and buttons
 .button, button, input[type='button'], input[type='reset'], input[type='submit'] {
 	background-color: $berry;
@@ -63,5 +93,5 @@ img {
 
 .search-form .search-field {
 	font-size: $scaleup-2;
-	color: darken($grey, 30)
+	color: $dblue;
 }

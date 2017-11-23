@@ -25,31 +25,39 @@ class App extends Component {
 		return (
 			<div id="app">
 
-				<Nav />
+				<div className="nav-wrap">
+					<div className="container">
+						<Nav />
+					</div>
+				</div>
 
-				{ this.props.isLoading && <div className="loader"></div> }
+				<div className="container">
 
-				<main className="main">
+					{ this.props.isLoading && <div className="loader"></div> }
 
-					<Switch>
-						<Route path="/:url*" exact strict render={ props => <Redirect to={ `${ props.location.pathname }/` } /> } />
-						<Route exact path="/" component={ Post } />
-						<Route exact path="/category/:catSlug/page/:offSet" component={ Term } />
-						<Route exact path="/category/:catSlug" component={ Term } />
-						<Route exact path="/tag/:tagSlug" component={ Term } />
-						<Route exact path="/author/:authorSlug/page/:offSet" component={ Author } />
-						<Route exact path="/author/:authorSlug" component={ Author } />
-						<Route exact path={ `/${ BLOG_PAGE }/page/:offSet` } component={ Blog } />
-						<Route exact path={ `/${ BLOG_PAGE }/` } component={ Blog } />
-						<Route exact path={ `/${ BLOG_PAGE }` } component={ Blog } />
-						<Route exact path="/search/:query" component={ Search } />
-						<Route exact path="/search" component={ Search } />
-						<Route exact path="/:postSlug" component={ Post } />
-						<Route exact path="/**" component={ Post } />
-						<Route component={ NotFound } />
-					</Switch>
+					<main className="main">
 
-				</main>
+						<Switch>
+							<Route path="/:url*" exact strict render={ props => <Redirect to={ `${ props.location.pathname }/` } /> } />
+							<Route exact path="/" component={ Post } />
+							<Route exact path="/category/:catSlug/page/:offSet" component={ Term } />
+							<Route exact path="/category/:catSlug" component={ Term } />
+							<Route exact path="/tag/:tagSlug" component={ Term } />
+							<Route exact path="/author/:authorSlug/page/:offSet" component={ Author } />
+							<Route exact path="/author/:authorSlug" component={ Author } />
+							<Route exact path={ `/${ BLOG_PAGE }/page/:offSet` } component={ Blog } />
+							<Route exact path={ `/${ BLOG_PAGE }/` } component={ Blog } />
+							<Route exact path={ `/${ BLOG_PAGE }` } component={ Blog } />
+							<Route exact path="/search/:query" component={ Search } />
+							<Route exact path="/search" component={ Search } />
+							<Route exact path="/:postSlug" component={ Post } />
+							<Route exact path="/**" component={ Post } />
+							<Route component={ NotFound } />
+						</Switch>
+
+					</main>
+
+				</div>
 
 			</div>
 		)
