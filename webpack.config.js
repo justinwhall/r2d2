@@ -96,9 +96,11 @@ if ( process.env.NODE_ENV === 'production' ) {
 			test: /\.scss$/,
 			use: extractSass.extract( {
 				use: [ {
-					loader: "css-loader"
+					loader: "css-loader",
+					options: { minimize: true }
 				}, {
-					loader: "sass-loader"
+					loader: "sass-loader",
+					options: { minimize: true }
 				}],
 				// use style-loader in development
 				fallback: "style-loader"
