@@ -1,6 +1,6 @@
 export function formatLink( url ) {
 
-	if ( CONFIG.baseURL ) {
+	if ( process.env.NODE_ENV === 'development' ) {
 		// remove trailing slash if present
 		const baseURL = CONFIG.baseURL.replace( /\/$/, '' );
 		// remove base URL
