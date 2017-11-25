@@ -1,13 +1,15 @@
 import React from 'react'
 import NotFound from '../notFound'
+import Comments from '../comments'
 import Article from '../../components/article'
 import { Component } from "react";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { withRouter } from 'react-router'
 import { Helmet } from "react-helmet"
 import { fetchMainContent } from '../app/appActions'
 import { SITE_TITLE } from "../../constants/settings"
+import { withRouter } from 'react-router-dom'
+
 
 class Post extends Component {
 
@@ -63,13 +65,14 @@ class Post extends Component {
 		const content = this.props.mainContent ? <Article {...this.props.mainContent} /> : <NotFound />;
 		const title = this.props.mainContent ? this.props.mainContent.title.rendered : 'Page Not Found';
 
-
 		return (
 			<div>
 				<Helmet>
 					<title>{ title + ' | ' + SITE_TITLE }</title>
 				</Helmet>
 				{ content }
+
+				<Comments post={ this.props.mainContent } />
 			</div>
 		)
 

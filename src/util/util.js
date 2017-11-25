@@ -9,3 +9,8 @@ export function formatLink( url ) {
 
 	return url;
 }
+
+export function formatDate( timestamp ) {
+	const date = new Date( timestamp )
+	return date.toLocaleDateString();
+}

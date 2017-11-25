@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
 import App from './containers/app';
+import ErrorBoundary from './components/errorboundary';
 import store, { history } from './store'
 
 
@@ -12,7 +13,9 @@ export const renderApp = Component => {
 		<AppContainer>
 			<Provider store={ store }>
 				<ConnectedRouter history={ history }>
-					<App />
+					<ErrorBoundary>
+						<App />
+					</ErrorBoundary>
 				</ConnectedRouter>
 			</Provider>
 		</AppContainer>

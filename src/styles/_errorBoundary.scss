@@ -1,0 +1,25 @@
+#dev-error-boundary {
+	background: rgba(0, 0, 0, 0.9);
+	position: fixed;
+	height: 100vh;
+	overflow: scroll;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	color: #fff;
+
+	h1 { color: red; }
+	h4 {color: rgb(79, 173, 250); }
+	.container {
+		padding: 20px 0;
+	}
+
+	.well {
+		background: rgba(0, 0, 0, 0.3);
+		margin-bottom: 20px;
+		padding: 10px;
+		white-space: pre-wrap;
+		font-size: 18px;
+	}
+}

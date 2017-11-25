@@ -1,0 +1,17 @@
+.comments {
+	border-top: 1px solid $lgrey;
+	padding-top: 50px;
+
+	.single-comment {
+		margin-bottom: $scaleup-6;
+	}
+
+	.author-name {
+		color: $berry;
+		font-size: $scaleup-6;
+	}
+
+	.comment-date {
+		color: darken( $metal, 10);
+	}
+}
