@@ -1,6 +1,7 @@
 const initialState = {
-	comments: false,
+	comments: [],
 	commentsIsLoading: true,
+	commentsLoaded: 0,
 	numComments: 0,
 	page: 1
 }
@@ -13,9 +14,19 @@ function comments( state = initialState, action ) {
 
 			return {
 				...state,
-				comments: action.comments,
-				commentsIsLoading: false
+				comments: [ ...state.comments, ...action.comments ],
+				commentsIsLoading: false,
+				commentsLoaded: [ ...state.comments, ...action.comments ].length
 			}
+
+		case 'INCREMENT_COMMENT_PAGE':
+
+			return {
+				...state,
+				page: state.page + 1
+			}
+
+			return state;
 
 		case 'SET_NUM_COMMENTS':
 

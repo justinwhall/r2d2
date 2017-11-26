@@ -25,6 +25,13 @@ export function commentsIsLoading( bool ) {
 	};
 }
 
+export function incrementCommentPage( pageNum ) {
+	return {
+		type: 'INCREMENT_COMMENT_PAGE',
+		commentsIsLoading: pageNum
+	};
+}
+
 export function fetchComments( url ) {
 
 	return ( dispatch ) => {

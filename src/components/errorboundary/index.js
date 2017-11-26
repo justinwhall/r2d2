@@ -5,11 +5,22 @@ class ErrorBoundary extends Component {
 
 	constructor( props ) {
 		super( props );
-		this.state = { hasError: false };
+		this.state = {
+			hasError: false,
+			error: false,
+			info: false
+		};
+	}
+
+	componentWillReceiveProps( prevProps, prevState ) {
+		this.setState( {
+			hasError: false,
+			error: false,
+			info: false
+		} );
 	}
 
 	componentDidCatch( error, info ) {
-		// Display fallback UI
 		this.setState( {
 			hasError: true,
 			error: error,
@@ -18,9 +29,7 @@ class ErrorBoundary extends Component {
 	}
 
 	render() {
-
 		if ( this.state.hasError ) {
-			// You can render any custom fallback UI
 			return (
 				<div id="dev-error-boundary">
 					<div className="container">

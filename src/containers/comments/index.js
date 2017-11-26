@@ -1,36 +1,31 @@
 import React from 'react'
 import { Component } from "react";
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchComments } from './commentsActions'
+import { fetchComments, incrementCommentPage } from './commentsActions'
 import Comment from './comment'
 
 class Comments extends Component {
 
 	constructor( props ) {
 		super( props )
-		this.fetchComments = this.fetchComments.bind( this )
+		this.loadMoreComments = this.loadMoreComments.bind( this )
 	}
 
 	componentDidMount() {
 		this.fetchComments()
 	}
 
-	componentDidUpdate( prevProps ) {
-		console.log( prevProps );
-
-		// let oldRoute = prevProps.location.pathname;
-		// let newRoute = this.props.location.pathname;
-
-		// if ( newRoute !== oldRoute ) {
-		// 	this.fetchContent()
-		// }
+	componentDidUpdate( nextProps ) {
+		if ( nextProps.page !== this.props.page ) {
+			this.fetchComments()
+		}
 	}
 
 	loadMoreComments( e ) {
 		e.preventDefault();
-		console.log( this );
+		this.props.incrementCommentPage();
 	}
 
 	componentWillUnmount() {
@@ -38,8 +33,7 @@ class Comments extends Component {
 	}
 
 	fetchComments() {
-		// debugger
-		this.props.fetchComments( `/wp-json/wp/v2/comments?post=${ this.props.post.id }&page=${ this.props.page }` )
+		this.props.fetchComments( `/wp-json/wp/v2/comments?post=${ this.props.post.id }&page=${ this.props.page }&per_page=25` )
 	}
 
 	renderComments() {
@@ -51,14 +45,18 @@ class Comments extends Component {
 	}
 
 	render() {
+		console.log( this.props.commentsLoaded );
+		console.log( this.props.numComments );
 
-		if ( this.props.isLoading ) return <div className="loader comment-loader"></div>
+		const loader = this.props.isLoading ? <div className="loader comment-loader"></div> : null
 		const comments = this.renderComments()
+		const loadMore = this.props.commentsLoaded < this.props.numComments ? <a href="#" onClick={ this.loadMoreComments } className="More Comments btn">More Comments</a> : null
 
 		return (
 			<div className="comments">
 				{ comments }
-				<a href="#" className="More Comments btn">More Comments</a>
+				{ loader }
+				{ loadMore }
 			</div>
 		);
 	}
@@ -67,15 +65,17 @@ class Comments extends Component {
 const mapStateToProps = state => ( {
 	page: state.comments.page,
 	comments: state.comments.comments,
+	commentsLoaded: state.comments.commentsLoaded,
 	numComments: state.comments.numComments,
 	isLoading: state.comments.commentsIsLoading,
 } )
 
 const mapDispatchToProps = dispatch => bindActionCreators( {
-	fetchComments
+	fetchComments,
+	incrementCommentPage
 }, dispatch )
 
-export default connect(
+export default withRouter( connect(
 	mapStateToProps,
 	mapDispatchToProps
-)( Comments )
+)( Comments ) )
