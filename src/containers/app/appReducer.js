@@ -10,12 +10,9 @@ function app( state = initialState, action ) {
 
 	switch ( action.type ) {
 
-		case LOCATION_CHANGE:
+		case 'RESET_STATE':
 
-			return {
-				...state,
-				mainContentIsLoading: true
-			}
+			return initialState
 
 		case 'FETCH_MAIN_CONTENT':
 

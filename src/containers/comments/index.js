@@ -45,9 +45,6 @@ class Comments extends Component {
 	}
 
 	render() {
-		console.log( this.props.commentsLoaded );
-		console.log( this.props.numComments );
-
 		const loader = this.props.isLoading ? <div className="loader comment-loader"></div> : null
 		const comments = this.renderComments()
 		const loadMore = this.props.commentsLoaded < this.props.numComments ? <a href="#" onClick={ this.loadMoreComments } className="More Comments btn">More Comments</a> : null

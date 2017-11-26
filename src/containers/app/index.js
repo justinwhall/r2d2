@@ -15,6 +15,16 @@ import '../../styles/style.scss'
 
 class App extends Component {
 
+	componentWillUpdate( prevProps ) {
+		if ( this.props.location.pathname !== prevProps.location.pathname ) {
+			this.onRouteChanged();
+		}
+	}
+
+	onRouteChanged() {
+		this.props.dispatch( { type: 'RESET_STATE' } )
+	}
+
 	updateBodyClass() {
 		const bodyClass = this.props.isLoading ? 'isLoading' : 'loaded';
 		document.getElementById( 'site-wrapper' ).classList = bodyClass;
@@ -72,10 +82,10 @@ const mapStateToProps = function ( state ) {
 	}
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators( {
-}, dispatch )
+// const mapDispatchToProps = dispatch => bindActionCreators( {
+// }, dispatch )
 
 export default withRouter( connect(
 	mapStateToProps,
-	mapDispatchToProps
+	// mapDispatchToProps
 )( App ) )

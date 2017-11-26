@@ -23,8 +23,6 @@ class Author extends Component {
 
 		if ( newRoute !== oldRoute ) {
 			this.fetchContent()
-			console.log( this.props );
-
 		}
 	}
 
