@@ -26,6 +26,9 @@ if ( ! defined( 'R2D2_APP' ) ) {
 include_once 'class-r2d2-rest.php';
 include_once 'class-r2d2-permalinks.php';
 
+add_filter( 'rest_allow_anonymous_comments', '__return_true' );
+
+
 if ( ! function_exists( 'r2d2_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -201,6 +204,7 @@ function r2d2_inline_settings() {
 			'frontPage' => $front_page_slug,
 			'blog' => $blog_page_slug,
 			'postsPerPage' => get_option( 'posts_per_page' ),
+			'nonce' => wp_create_nonce( 'wp_rest' ),
 			'URL' => array(
 				'base' => esc_url_raw( $url ),
 				'path' => $path

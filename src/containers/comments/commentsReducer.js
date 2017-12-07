@@ -10,6 +10,10 @@ function comments( state = initialState, action ) {
 
 	switch ( action.type ) {
 
+		case 'RESET_STATE':
+
+			return initialState
+
 		case 'FETCH_COMMENTS':
 
 			return {
@@ -26,7 +30,12 @@ function comments( state = initialState, action ) {
 				page: state.page + 1
 			}
 
-			return state;
+		case 'COMMENT_SUBMIT_REQUEST_SUCCESS':
+
+			return {
+				...state,
+				comments: [ ...state.comments, action.comment ]
+			}
 
 		case 'SET_NUM_COMMENTS':
 

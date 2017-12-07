@@ -61,9 +61,10 @@ class Post extends Component {
 		if ( this.props.mainContentIsLoading ) {
 			return null;
 		}
-
-		const content = this.props.mainContent ? <Article {...this.props.mainContent} /> : <NotFound />;
-		const title = this.props.mainContent ? this.props.mainContent.title.rendered : 'Page Not Found';
+		const { mainContent } = this.props
+		const content = mainContent ? <Article {...mainContent} /> : <NotFound />
+		const title = mainContent ? mainContent.title.rendered : 'Page Not Found'
+		const comments = mainContent.comment_status === 'open' ? <Comments post={ mainContent } /> : null
 
 		return (
 			<div>
@@ -71,8 +72,7 @@ class Post extends Component {
 					<title>{ title + ' | ' + SITE_TITLE }</title>
 				</Helmet>
 				{ content }
-
-				<Comments post={ this.props.mainContent } />
+				{ comments }
 			</div>
 		)
 

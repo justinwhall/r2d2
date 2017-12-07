@@ -6,8 +6,10 @@ const Comment = props => (
 	<div id={ `comment-${ props.id }` } className="single-comment">
 		<div className="row">
 			<div className="column column-25">
-				<img src={ props.author_avatar_urls[ '96' ] } />
-				<div className="author-name">{ props.author_name }</div>
+				<span className="vcard">
+					<img class="avatar" src={ props.author_avatar_urls[ '96' ] } />
+					<div className="author-name">{ props.author_name }</div>
+				</span>
 				<div className="comment-date">{ formatDate( props.date ) }</div>
 			</div>
 			<div className="column">

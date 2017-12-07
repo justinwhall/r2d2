@@ -427,3 +427,19 @@
 .o-hidden {
 	overflow: hidden;
 }
+
+.error-block {
+	background: lighten($berry, 35);
+	color: $berry;
+	padding: $scaleup-1;
+	margin: $scaleup-1 0;
+	font-weight: 400;
+}
+
+.info-block {
+	background: lighten($blue, 50);
+	color: $blue;
+	padding: $scaleup-1;
+	margin: $scaleup-1 0;
+	font-weight: 400;
+}

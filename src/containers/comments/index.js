@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { fetchComments, incrementCommentPage } from './commentsActions'
 import Comment from './comment'
+import CommentForm from './commentForm'
 
 class Comments extends Component {
 
@@ -48,12 +49,22 @@ class Comments extends Component {
 		const loader = this.props.isLoading ? <div className="loader comment-loader"></div> : null
 		const comments = this.renderComments()
 		const loadMore = this.props.commentsLoaded < this.props.numComments ? <a href="#" onClick={ this.loadMoreComments } className="More Comments btn">More Comments</a> : null
+		let commentsTitle = null
+
+		if ( this.props.numComments == 1 ) {
+			commentsTitle = 'One Comment'
+		} else {
+			commentsTitle = `${ this.props.numComments } Comments`
+		}
 
 		return (
 			<div className="comments">
+				<div className="comments-title h3">{ commentsTitle }</div>
+				<div className="bar"></div>
 				{ comments }
 				{ loader }
 				{ loadMore }
+				<CommentForm postID={ this.props.post.id } />
 			</div>
 		);
 	}

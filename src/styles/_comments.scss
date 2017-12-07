@@ -1,17 +1,62 @@
 .comments {
-	border-top: 1px solid $lgrey;
-	padding-top: 50px;
+	// border-top: 1px solid $lgrey;
+	padding-top: $scale-0;
+
+	.comments-title {
+		font-size: $scaleup-6;
+		color: $blue;
+	}
+
+	.bar {
+		margin-bottom: $scaleup-5;
+	}
 
 	.single-comment {
 		margin-bottom: $scaleup-6;
 	}
 
+	.avatar {
+		border-radius: 100%;
+		margin-bottom: -10px;
+	}
+
 	.author-name {
-		color: $berry;
-		font-size: $scaleup-6;
+		color: $blue;
+		font-size: $scaleup-4;
+		font-weight: 400;
 	}
 
 	.comment-date {
 		color: darken( $metal, 10);
+		font-size: $scaleup-2;
+		line-height: $scaledown-1;
 	}
+
+	.comment-content {
+		padding: $scaleup-2;
+		background: lighten( $lgrey, 3 );
+	}
+
+	.comment-form-email {
+		position: relative
+	}
+
+	#email-notes {
+		color: $grey;
+		font-size: $scaleup-2;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+}
+
+.form-wrap:before {
+	content: '';
+	position: relative;
+	height: 3px;
+	width: 50px;
+	background: $lgrey;
+	display: block;
+	margin: 60px auto;
 }

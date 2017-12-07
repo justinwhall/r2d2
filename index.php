@@ -13,20 +13,6 @@
 
 			<div id="root"></div>
 
-			<div class="container sidebar-container">
-
-				<div class="sidebar-inner">
-
-					<?php if ( is_active_sidebar( 'r2d2_footer' ) ) : ?>
-						<div class="r2d2-footer widget-area" role="complementary">
-							<?php dynamic_sidebar( 'r2d2_footer' ); ?>
-						</div><!-- #primary-sidebar -->
-					<?php endif; ?>
-
-				</div>
-
-			</div>
-
 			<?php wp_footer(); ?>
 
 		</div>
