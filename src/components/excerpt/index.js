@@ -11,7 +11,7 @@ const Excerpt = props => (
 				{ props.title.rendered }
 			</Link>
 		</h2>
-		<Meta { ...props._embedded } />
+		<Meta date={ props.date } { ...props._embedded } />
 		<div className="post-content" dangerouslySetInnerHTML={ { __html: props.excerpt.rendered } }></div>
 	</article>
 )

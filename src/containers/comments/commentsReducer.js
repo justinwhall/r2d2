@@ -30,13 +30,6 @@ function comments( state = initialState, action ) {
 				page: state.page + 1
 			}
 
-		case 'COMMENT_SUBMIT_REQUEST_SUCCESS':
-
-			return {
-				...state,
-				comments: [ ...state.comments, action.comment ]
-			}
-
 		case 'SET_NUM_COMMENTS':
 
 			return {

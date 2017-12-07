@@ -16,11 +16,17 @@
 	font-size: $scaleup-2;
 }
 
+.meta,
 .meta a {
 	font-weight: 400;
-	font-size: $scaleup-1;
-	color: darken($metal, 20);
+	font-size: 12px;
+	color: darken($grey, 10);
+	// color: $dgrey;
 	text-transform: uppercase;
+}
+
+.meta a:hover {
+	color: $dgrey;
 }
 
 article {
