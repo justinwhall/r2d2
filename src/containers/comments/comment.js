@@ -13,6 +13,7 @@ const Comment = props => (
 				<div className="comment-date">{ formatDate( props.date ) }</div>
 			</div>
 			<div className="column">
+				{ props.status == "hold" && <div className="color-berry">Comment pending approval</div> }
 				<div className="comment-content" dangerouslySetInnerHTML={ { __html: props.content.rendered } }></div>
 			</div>
 		</div>
