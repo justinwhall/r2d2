@@ -4,6 +4,7 @@ import { Route, Link, withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { fetchComments, incrementCommentPage } from './commentsActions'
+import { COMMENTS_PER_PAGE } from "../../constants/settings"
 import Comment from './comment'
 import CommentForm from './commentForm'
 
@@ -34,7 +35,7 @@ class Comments extends Component {
 	}
 
 	fetchComments() {
-		this.props.fetchComments( `/wp-json/wp/v2/comments?post=${ this.props.post.id }&page=${ this.props.page }&per_page=25` )
+		this.props.fetchComments( `/wp-json/wp/v2/comments?post=${ this.props.post.id }&page=${ this.props.page }&per_page=${ COMMENTS_PER_PAGE }&order=asc` )
 	}
 
 	renderComments() {

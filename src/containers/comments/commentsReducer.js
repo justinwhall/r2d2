@@ -30,6 +30,13 @@ function comments( state = initialState, action ) {
 				page: state.page + 1
 			}
 
+		case 'COMMENT_SUBMIT_REQUEST_SUCCESS':
+			const comments = state.commentsLoaded === state.numComments ? [ ...state.comments, action.comment ] : state.comments;
+			return {
+				...state,
+				comments: comments
+			}
+
 		case 'SET_NUM_COMMENTS':
 
 			return {

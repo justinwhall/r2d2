@@ -7,7 +7,7 @@ const Comment = props => (
 		<div className="row">
 			<div className="column column-25">
 				<span className="vcard">
-					<img class="avatar" src={ props.author_avatar_urls[ '96' ] } />
+					<img className="avatar" src={ props.author_avatar_urls[ '96' ] } />
 					<div className="author-name">{ props.author_name }</div>
 				</span>
 				<div className="comment-date">{ formatDate( props.date ) }</div>

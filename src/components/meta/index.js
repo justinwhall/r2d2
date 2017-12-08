@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { formatLink, formatDate } from '../../util/util'
 
 const Meta = props => (
-	<div className="r-too m-bottom-2 meta">
+	<div className="r-too m-bottom-4 meta">
 		<span className="author">
 			<Link to={ formatLink( props.author[ 0 ].link ) } >{ props.author[ 0 ].name }</Link>
 		</span>

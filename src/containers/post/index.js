@@ -52,7 +52,7 @@ class Post extends Component {
 	fetchContent() {
 		if ( !this.ignoreLastFetch ) {
 			const queryString = this.getQueryString()
-			this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?' + queryString + '&type[]=page&type[]=post' )
+			this.props.fetchMainContent( '/wp-json/wp/v2/multiple-post-type?' + queryString + '&type[]=page&type[]=post&_embed=true' )
 		}
 	}
 
@@ -66,8 +66,9 @@ class Post extends Component {
 		const title = mainContent ? mainContent.title.rendered : 'Page Not Found'
 		const comments = mainContent.comment_status === 'open' ? <Comments post={ mainContent } /> : null
 
+
 		return (
-			<div>
+			<div className={ 'post-type-' + mainContent.type }>
 				<Helmet>
 					<title>{ title + ' | ' + SITE_TITLE }</title>
 				</Helmet>
