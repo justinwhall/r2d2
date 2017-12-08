@@ -17,3 +17,22 @@ h1 {
 .widgettitle {
 	margin-bottom: $scaledown-4;
 }
+
+input,
+textarea {
+	font-size: $scaleup-3;
+	color: $dgrey;
+}
+
+input[type='email']:focus,
+input[type='number']:focus,
+input[type='password']:focus,
+input[type='search']:focus,
+input[type='tel']:focus,
+input[type='text']:focus,
+input[type='url']:focus,
+textarea:focus,
+select:focus {
+    border-color: $metal;
+    outline: 0;
+}

@@ -49,22 +49,31 @@ class Comments extends Component {
 	render() {
 		const loader = this.props.isLoading ? <div className="loader comment-loader"></div> : null
 		const comments = this.renderComments()
-		const loadMore = this.props.commentsLoaded < this.props.numComments ? <a href="#" onClick={ this.loadMoreComments } className="More Comments btn">More Comments</a> : null
-		let commentsTitle = null
+		const loadMore = this.props.commentsLoaded < this.props.numComments ? <a href="#" onClick={ this.loadMoreComments } className="more-commentes button">More Comments</a> : null
+		let commentsTitle = false;
 
-		if ( this.props.numComments == 1 ) {
+		if ( this.props.numComments === 1 ) {
 			commentsTitle = 'One Comment'
-		} else {
+		} else if ( this.props.numComments > 1 ) {
 			commentsTitle = `${ this.props.numComments } Comments`
 		}
 
+
 		return (
 			<div className="comments">
-				<div className="comments-title h3">{ commentsTitle }</div>
-				<div className="bar"></div>
+
+				{ commentsTitle &&
+					<div className="text-center m-bottom-6">
+						<div className="comments-title h3">{ commentsTitle }</div>
+						<div className="bar d-inline-block"></div>
+					</div>
+				}
+
 				{ comments }
 				{ loader }
-				{ loadMore }
+				<div className="text-center">
+					{ loadMore }
+				</div>
 				<CommentForm postID={ this.props.post.id } />
 			</div>
 		);

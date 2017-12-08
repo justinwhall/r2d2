@@ -123,9 +123,10 @@ class CommentForm extends Component {
 			<div className="form-wrap">
 
 				<form onSubmit={ this.onSubmit.bind( this ) }>
-
-					<div className="h3">Leave a reply</div>
-					<div className="bar"></div>
+					<div className="text-center m-bottom-6 m-top-8">
+						<div className="h3">Leave a reply</div>
+						<div className="bar d-inline-block"></div>
+					</div>
 
 					{ error }
 

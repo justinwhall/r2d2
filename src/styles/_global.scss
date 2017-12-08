@@ -89,11 +89,31 @@ img {
 .button, button, input[type='button'], input[type='reset'], input[type='submit'] {
 	background-color: $berry;
 	border: 0.1rem solid $berry;
+	outline: 0;
 }
 
 .search-form .search-field {
 	font-size: $scaleup-2;
 	color: $dblue;
+}
+
+.button:hover,
+button:hover,
+input[type='button']:hover,
+input[type='reset']:hover,
+input[type='submit']:hover {
+    background-color: $dgrey;
+    border-color: $dgrey;
+    color: #fff;
+}
+
+.button:focus,
+button:focus,
+input[type='button']:focus,
+input[type='reset']:focus,
+input[type='submit']:focus {
+    background-color: $berry;
+    border-color: $berry;
 }
 
 /* == WordPress WYSIWYG Editor Styles == */

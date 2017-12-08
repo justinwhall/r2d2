@@ -34,7 +34,8 @@ function comments( state = initialState, action ) {
 			const comments = state.commentsLoaded === state.numComments ? [ ...state.comments, action.comment ] : state.comments;
 			return {
 				...state,
-				comments: comments
+				comments: comments,
+				numComments: state.numComments + 1
 			}
 
 		case 'SET_NUM_COMMENTS':

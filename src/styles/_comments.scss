@@ -51,12 +51,21 @@
 
 }
 
-.form-wrap:before {
-	content: '';
-	position: relative;
-	height: 3px;
-	width: 50px;
-	background: $lgrey;
-	display: block;
-	margin: 60px auto;
+// .form-wrap:before {
+// 	content: '';
+// 	position: relative;
+// 	height: 3px;
+// 	width: 50px;
+// 	background: $lgrey;
+// 	display: block;
+// 	margin: 60px auto;
+// }
+
+.form-wrap {
+	max-width: 600px;
+	margin: 0 auto;
+
+	textarea {
+		min-height: 300px;
+	}
 }
