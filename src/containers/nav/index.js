@@ -3,9 +3,8 @@ import { Component } from "react";
 import { Route, Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {
-	getNavItems,
-} from './navActions'
+import { getNavItems } from './navActions'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../constants/settings'
 
 class Nav extends Component {
 
@@ -27,7 +26,12 @@ class Nav extends Component {
 
 		return (
 			<nav>
-				{ navLinks }
+				<div className="brand">
+					<Link to="/">{ SITE_TITLE }</Link> • <span className="tagline">{ SITE_DESCRIPTION }</span>
+				</div>
+				<div className="menu">
+					{ navLinks }
+				</div>
 			</nav>
 		);
 	}

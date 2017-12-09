@@ -1,5 +1,11 @@
-a{
+a,
+a:focus {
 	color: $berry;
+	outline: 0;
+}
+
+a:hover {
+    color: $grey;
 }
 
 h1 {

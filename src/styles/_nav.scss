@@ -1,20 +1,34 @@
+nav {
+	display: flex;
+}
 .nav-wrap {
-	background: $blue;
+	background: $dgrey;
 	position: fixed;
 	z-index: $z-index-10;
 	top: 0;
 	left: 0;
 	right: 0;
+	padding: $scale-0 0;
 }
 
-nav a,
-nav a:focus {
-	margin-right: $scaleup-3;
+.brand {
+	color: $grey;
+}
+
+.menu {
+	text-align: right;
+	flex-grow: 1;
+}
+
+.menu a,
+.menu a:focus {
+	margin-left: $scaleup-3;
 	display: inline-block;
-	// text-transform: uppercase;
+	text-transform: uppercase;
+	color: $grey;
 	color: #fff;
-	// font-weight: 400;
-	padding: $scale-0 0;
+	font-size: $scaleup-2;
+	font-weight: 400;
 	outline: none;
 
 	&:hover {

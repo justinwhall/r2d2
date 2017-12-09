@@ -8,6 +8,12 @@ body {
 	background: #fff;
 }
 
+#app {
+	min-height: 100vh;
+	overflow: hidden;
+	padding-bottom: 60px;
+}
+
 #site-wrapper {
 	color: $dgrey;
 	margin: 0 auto;
@@ -26,12 +32,12 @@ body {
 
 // Page transitions
 #site-wrapper.isLoading .main,
-#site-wrapper.isLoading .sidebar-container {
+#site-wrapper.isLoading footer {
 	opacity: 0;
 }
 
 #site-wrapper.loaded .main,
-#site-wrapper.loaded .sidebar-container {
+#site-wrapper.loaded footer {
 	opacity: 1;
 	transition: all 200ms ease;
 }

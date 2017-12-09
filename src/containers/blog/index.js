@@ -59,7 +59,7 @@ class Blog extends Component {
 		const title = BLOG_PAGE.replace( /-/g, ' ' );
 
 		return (
-			<div>
+			<div class="blog-view">
 				<Helmet>
 					<title>{ title + ' | ' + SITE_TITLE }</title>
 				</Helmet>

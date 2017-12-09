@@ -17,7 +17,7 @@ class Pagination extends Component {
 			return null
 		}
 
-		return <Link className="float-right" to={ path } >Next Page</Link>
+		return <Link className="float-right" to={ path } >Next &#9658;</Link>
 	}
 
 	getPrevLink() {
@@ -25,7 +25,7 @@ class Pagination extends Component {
 		const pathName = this.props.location.pathname;
 		const prevPage = params.hasOwnProperty( 'offSet' ) ? parseInt( params.offSet ) - 1 : 0;
 		const path = prevPage == 1 ? pathName.replace( 'page/' + params.offSet + '/', '' ) : pathName.replace( params.offSet, prevPage );
-		const prevLink = prevPage ? <Link className="float-left" to={ path } >Previous Page</Link> : null;
+		const prevLink = prevPage ? <Link className="float-left" to={ path } >&#9668; Previous</Link> : null;
 
 		return prevLink;
 	}

@@ -3,7 +3,7 @@ import { Component } from "react";
 import { Route, Link, Switch, withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { BLOG_PAGE } from '../../constants/settings'
+import { BLOG_PAGE, SITE_TITLE, SITE_DESCRIPTION } from '../../constants/settings'
 import Post from '../post'
 import Search from '../search'
 import Blog from '../blog'
@@ -69,12 +69,20 @@ class App extends Component {
 
 				</div>
 
+				<footer>
+					<div className="container text-center">
+						<span className="title">{ SITE_TITLE } </span>
+						•
+						<span className="title"> { SITE_DESCRIPTION } </span>
+						•
+						<span className="title"> &copy; { new Date().getFullYear() }</span>
+					</div>
+				</footer>
+
 			</div>
 		)
 	}
 }
-
-
 
 const mapStateToProps = function ( state ) {
 	return {
@@ -82,10 +90,6 @@ const mapStateToProps = function ( state ) {
 	}
 }
 
-// const mapDispatchToProps = dispatch => bindActionCreators( {
-// }, dispatch )
-
 export default withRouter( connect(
 	mapStateToProps,
-	// mapDispatchToProps
 )( App ) )
