@@ -22,6 +22,15 @@ function app( state = initialState, action ) {
 				mainContentIsLoading: false
 			}
 
+		case 'FETCH_MAIN_CONTENT_ERROR':
+
+			return {
+				...state,
+				mainContent: false,
+				fetchError: true,
+				mainContentIsLoading: false
+			}
+
 		case 'SET_NUM_POSTS':
 
 			return {

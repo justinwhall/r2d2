@@ -9,6 +9,12 @@ function fetchMainContentSuccess( mainContent ) {
 	}
 }
 
+function fetchMainContentError() {
+	return {
+		type: 'FETCH_MAIN_CONTENT_ERROR'
+	}
+}
+
 function setNumPosts( numPosts ) {
 	return dispatch => {
 		dispatch( {
@@ -22,7 +28,7 @@ export function mainContentIsLoading( bool ) {
 	return {
 		type: 'MAIN_CONTENT_IS_LOADING',
 		mainContentIsLoading: bool
-	};
+	}
 }
 
 export function fetchMainContent( url ) {
@@ -43,6 +49,6 @@ export function fetchMainContent( url ) {
 				return response.json();
 			} )
 			.then( ( mainContent ) => dispatch( fetchMainContentSuccess( mainContent ) ) )
-		// .catch(() => dispatch(itemsHasErrored(true)));
+			.catch( () => dispatch( fetchMainContentError() ) );
 	};
 }

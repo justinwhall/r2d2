@@ -16,9 +16,9 @@ class R2D2_Permalinks {
 		add_action( 'admin_notices', array( $this, 'admin_permalinks_warning' ) );
 		add_action( 'init', array( $this, 'change_date' ) );
 		add_action( 'init', array( $this, 'change_paged' ) );
-		add_action( 'init', array( $this, 'add_new_attachment' ) );
 		add_action( 'after_switch_theme', array( $this, 'update_permalinks' ), 11 );
 		add_action( 'template_redirect', array( $this, 'do_redirects' ) );
+		add_filter( 'attachment_link', array( $this, 'change_attachment' ), 20, 2 );
 
 		// Flush permalinks after the theme is activated.
 		add_action( 'after_switch_theme', 'flush_rewrite_rules' );
@@ -75,29 +75,33 @@ class R2D2_Permalinks {
 		$wp_rewrite->pagination_base = 'p';
 	}
 
+
+	public function change_attachment( $link, $post_id ){
+		$post = get_post( $post_id );
+		return home_url( '/attachment/' . $post->post_title . '/' . $post_id );
+	}
+
 	/**
 	 * Create an `attachment/ID` rule so that our custom route isn't automatically 404'd
 	 */
-	public function add_new_attachment() {
-		// It doesn't actually matter where the rule goes.
-		add_rewrite_rule( '^attachment/([0-9]+)/?', 'index.php', 'top' );
-	}
+	// public function add_new_attachment() {
+	// 	// It doesn't actually matter where the rule goes.
+	// 	add_rewrite_rule( '^attachment/([0-9]+)/?', 'index.php', 'top' );
+	// }
 
 	/**
 	 * Redirect the search form results `?s=<term>` to `/search/<term>`
 	 */
 	public function do_redirects() {
+
 		$search = get_search_query();
 		global $wp;
+
 		if ( $search && ( 'search' !== substr( $wp->request, 0, 6 ) ) ) {
 			// Decode the quotes before re-encoding in the redirect
 			$search = html_entity_decode( $search, ENT_QUOTES );
 			$url = home_url( sprintf( '/search/%s', urlencode( $search ) ) );
 			wp_safe_redirect( $url );
-			exit();
-		} elseif ( is_attachment() ) {
-			$attachment = get_queried_object_id();
-			wp_safe_redirect( home_url( sprintf( '/attachment/%s', $attachment ) ) );
 			exit();
 		}
 	}

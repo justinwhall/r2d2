@@ -218,3 +218,9 @@ function r2d2_inline_settings() {
 	wp_add_inline_script( R2D2_APP, $r2d2_settings, 'before' );
 }
 add_action( 'wp_enqueue_scripts', 'r2d2_inline_settings' );
+
+// function wpd_attachment_link( $link, $post_id ){
+//     $post = get_post( $post_id );
+//     return home_url( '/media/' . $post->post_name );
+// }
+// add_filter( 'attachment_link', 'wpd_attachment_link', 20, 2 );

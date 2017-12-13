@@ -10,6 +10,7 @@ import Blog from '../blog'
 import Term from '../term'
 import Nav from '../nav'
 import Author from '../author'
+import Attachment from '../attachment'
 import NotFound from '../notFound'
 import '../../styles/style.scss'
 
@@ -32,8 +33,10 @@ class App extends Component {
 
 	render() {
 		this.updateBodyClass();
+		const appClass = window.r2d2Settings.user == 0 ? 'logged-out' : 'logged-in';
+
 		return (
-			<div id="app">
+			<div id="app" className={ appClass }>
 
 				<div className="nav-wrap">
 					<div className="container">
@@ -60,6 +63,7 @@ class App extends Component {
 							<Route exact path={ `/${ BLOG_PAGE }` } component={ Blog } />
 							<Route exact path="/search/:query" component={ Search } />
 							<Route exact path="/search" component={ Search } />
+							<Route exact path="/attachment/:postSlug/:mediaID" component={ Attachment } />
 							<Route exact path="/:postSlug" component={ Post } />
 							<Route exact path="/**" component={ Post } />
 							<Route component={ NotFound } />

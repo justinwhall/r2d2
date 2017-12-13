@@ -11,6 +11,10 @@ nav {
 	padding: $scale-0 0;
 }
 
+.logged-in .nav-wrap {
+	top: 30px;
+}
+
 .brand {
 	color: $grey;
 }
