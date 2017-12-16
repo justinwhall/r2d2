@@ -32,7 +32,6 @@ class Blog extends Component {
 	}
 
 	getblogArticles() {
-		console.log( this.props.blogPosts );
 
 		const blogArticles = this.props.blogPosts.map( function ( item, i ) {
 			return <Excerpt key={ i } { ...item } />
@@ -56,10 +55,10 @@ class Blog extends Component {
 		}
 
 		const blogArticles = this.getblogArticles();
-		const title = BLOG_PAGE.replace( /-/g, ' ' );
+		const title = BLOG_PAGE ? BLOG_PAGE.replace( /-/g, ' ' ) : 'Blog';
 
 		return (
-			<div class="blog-view">
+			<div className="blog-view">
 				<Helmet>
 					<title>{ title + ' | ' + SITE_TITLE }</title>
 				</Helmet>

@@ -170,11 +170,13 @@ add_action( 'rest_api_init', function () {
 
 function r2d2_inline_settings() {
 
-	$url = trailingslashit( home_url() );
+	$url = home_url();
 	$path = trailingslashit( wp_parse_url( $url )['path'] );
 
 	$front_page_slug = false;
 	$blog_page_slug = false;
+	$home_is_blog = false;
+
 	if ( 'posts' !== get_option( 'show_on_front' ) ) {
 		$front_page_id = get_option( 'page_on_front' );
 		$front_page = get_post( $front_page_id );
@@ -192,6 +194,11 @@ function r2d2_inline_settings() {
 	$user_id = get_current_user_id();
 	$user = get_userdata( $user_id );
 
+	// This pages should not be the same - but incase they are...
+	if ( ! $front_page_slug || $front_page_slug == $blog_page_slug ) {
+		$home_is_blog = true;
+	}
+
 	$r2d2_settings = sprintf(
 		'var siteSettings = %s; var r2d2Settings = %s;',
 		wp_json_encode( array(
@@ -203,6 +210,7 @@ function r2d2_inline_settings() {
 			'userDisplay' => $user ? $user->display_name : '',
 			'frontPage' => $front_page_slug,
 			'blog' => $blog_page_slug,
+			'homeIsBlog' => $home_is_blog,
 			'postsPerPage' => get_option( 'posts_per_page' ),
 			'nonce' => wp_create_nonce( 'wp_rest' ),
 			'URL' => array(

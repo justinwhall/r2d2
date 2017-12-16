@@ -111,8 +111,6 @@ class Search extends Component {
 }
 
 const mapStateToProps = function ( state, ownProps ) {
-	// console.log( ownProps );
-
 	return {
 		mainContentIsLoading: state.app.mainContentIsLoading,
 		searchResults: state.app.mainContent

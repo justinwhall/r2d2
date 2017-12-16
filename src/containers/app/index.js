@@ -33,7 +33,12 @@ class App extends Component {
 
 	render() {
 		this.updateBodyClass();
-		const appClass = window.r2d2Settings.user == 0 ? 'logged-out' : 'logged-in';
+		const { user, homeIsBlog } = window.r2d2Settings;
+		const appClass = user == 0 ? 'logged-out' : 'logged-in';
+		const frontPage = homeIsBlog ? Blog : Post;
+		const blogPath = homeIsBlog ? '/blog' : `/${ BLOG_PAGE }`;
+
+		console.log( window.r2d2Settings );
 
 		return (
 			<div id="app" className={ appClass }>
@@ -52,15 +57,15 @@ class App extends Component {
 
 						<Switch>
 							<Route path="/:url*" exact strict render={ props => <Redirect to={ `${ props.location.pathname }/` } /> } />
-							<Route exact path="/" component={ Post } />
+							<Route exact path="/" component={ frontPage } />
 							<Route exact path="/category/:catSlug/page/:offSet" component={ Term } />
 							<Route exact path="/category/:catSlug" component={ Term } />
 							<Route exact path="/tag/:tagSlug" component={ Term } />
 							<Route exact path="/author/:authorSlug/page/:offSet" component={ Author } />
 							<Route exact path="/author/:authorSlug" component={ Author } />
-							<Route exact path={ `/${ BLOG_PAGE }/page/:offSet` } component={ Blog } />
-							<Route exact path={ `/${ BLOG_PAGE }/` } component={ Blog } />
-							<Route exact path={ `/${ BLOG_PAGE }` } component={ Blog } />
+							<Route exact path={ `${ blogPath }/page/:offSet` } component={ Blog } />
+							<Route exact path={ `${ blogPath }/` } component={ Blog } />
+							{/* <Route exact path={ `/${ BLOG_PAGE }` } component={ Blog } /> */ }
 							<Route exact path="/search/:query" component={ Search } />
 							<Route exact path="/search" component={ Search } />
 							<Route exact path="/attachment/:postSlug/:mediaID" component={ Attachment } />
