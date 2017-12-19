@@ -179,25 +179,32 @@ function r2d2_inline_settings() {
 
 	if ( 'posts' !== get_option( 'show_on_front' ) ) {
 		$front_page_id = get_option( 'page_on_front' );
-		$front_page = get_post( $front_page_id );
-		if ( $front_page->post_name ) {
-			$front_page_slug = $front_page->post_name;
+
+		if ( $front_page_id ) {
+			$front_page = get_post( $front_page_id );
+			if ( $front_page ) {
+				$front_page_slug = $front_page->post_name;
+			}
 		}
 
 		$blog_page_id = get_option( 'page_for_posts' );
-		$blog_page = get_post( $blog_page_id );
-		if ( $blog_page->post_name ) {
-			$blog_page_slug = $blog_page->post_name;
+
+		if ( $blog_page_id ) {
+			$blog_page = get_post( $blog_page_id );
+			if ( $blog_page ) {
+				$blog_page_slug = $blog_page->post_name;
+			}
 		}
 	}
 
 	$user_id = get_current_user_id();
 	$user = get_userdata( $user_id );
 
-	// This pages should not be the same - but incase they are...
-	if ( ! $front_page_slug || $front_page_slug == $blog_page_slug ) {
+	// These are not suppose to be the same, but someone will do it...
+	if ( ! $front_page_slug || $front_page_slug === $blog_page_slug ) {
 		$home_is_blog = true;
 	}
+
 
 	$r2d2_settings = sprintf(
 		'var siteSettings = %s; var r2d2Settings = %s;',
@@ -226,9 +233,3 @@ function r2d2_inline_settings() {
 	wp_add_inline_script( R2D2_APP, $r2d2_settings, 'before' );
 }
 add_action( 'wp_enqueue_scripts', 'r2d2_inline_settings' );
-
-// function wpd_attachment_link( $link, $post_id ){
-//     $post = get_post( $post_id );
-//     return home_url( '/media/' . $post->post_name );
-// }
-// add_filter( 'attachment_link', 'wpd_attachment_link', 20, 2 );

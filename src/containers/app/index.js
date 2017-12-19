@@ -84,6 +84,8 @@ class App extends Component {
 						•
 						<span className="title"> { SITE_DESCRIPTION } </span>
 						•
+						<span className="title"> <a href="https://github.com/justinwhall/r2d2" target="_blank"> GitHub </a></span>
+						•
 						<span className="title"> &copy; { new Date().getFullYear() }</span>
 					</div>
 				</footer>
