@@ -14,6 +14,12 @@ import Attachment from '../attachment'
 import NotFound from '../notFound'
 import '../../styles/style.scss'
 
+/**
+ * App Container & routing
+ *
+ * @class App
+ * @extends {Component}
+ */
 class App extends Component {
 
 	componentWillUpdate( prevProps ) {
@@ -37,8 +43,6 @@ class App extends Component {
 		const appClass = user == 0 ? 'logged-out' : 'logged-in';
 		const frontPage = homeIsBlog ? Blog : Post;
 		const blogPath = homeIsBlog ? '/blog' : `/${ BLOG_PAGE }`;
-
-		console.log( window.r2d2Settings );
 
 		return (
 			<div id="app" className={ appClass }>
@@ -65,11 +69,11 @@ class App extends Component {
 							<Route exact path="/author/:authorSlug" component={ Author } />
 							<Route exact path={ `${ blogPath }/page/:offSet` } component={ Blog } />
 							<Route exact path={ `${ blogPath }/` } component={ Blog } />
-							{/* <Route exact path={ `/${ BLOG_PAGE }` } component={ Blog } /> */ }
 							<Route exact path="/search/:query" component={ Search } />
 							<Route exact path="/search" component={ Search } />
 							<Route exact path="/attachment/:postSlug/:mediaID" component={ Attachment } />
-							{/* <Route exact path="/([0-9]+)" component={ NotFound } /> */ }
+							<Route exact path="/([0-9]+)/([0-9]+)/([0-9]+)/:postSlug" component={ Post } />
+							<Route exact path="/([0-9]+)/([0-9]+)/:postSlug" component={ Post } />
 							<Route exact path="/:postSlug" component={ Post } />
 							<Route exact path="/**" component={ Post } />
 							<Route component={ NotFound } />
