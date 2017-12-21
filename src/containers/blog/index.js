@@ -11,7 +11,12 @@ import { fetchMainContent } from '../app/appActions'
 import { Helmet } from "react-helmet";
 import { SITE_TITLE } from "../../constants/settings"
 
-
+/**
+ * Renders the posts routes
+ *
+ * @class Blog
+ * @extends {Component}
+ */
 class Blog extends Component {
 
 	componentDidMount() {

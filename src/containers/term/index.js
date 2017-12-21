@@ -10,6 +10,12 @@ import { fetchMainContent } from '../app/appActions'
 import { Helmet } from "react-helmet";
 import { SITE_TITLE } from "../../constants/settings"
 
+/**
+ * Renders term routes
+ *
+ * @class Term
+ * @extends {Component}
+ */
 class Term extends Component {
 
 	componentDidMount() {

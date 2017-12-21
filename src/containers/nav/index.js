@@ -6,6 +6,12 @@ import { connect } from 'react-redux'
 import { getNavItems } from './navActions'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../constants/settings'
 
+/**
+ * Renders the primary navigation
+ *
+ * @class Nav
+ * @extends {Component}
+ */
 class Nav extends Component {
 
 	componentWillMount() {

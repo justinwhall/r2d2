@@ -9,6 +9,12 @@ import SearchForm from './form'
 import Excerpt from '../../components/excerpt'
 import { SITE_TITLE } from "../../constants/settings"
 
+/**
+ * Renders Search route
+ *
+ * @class Search
+ * @extends {Component}
+ */
 class Search extends Component {
 
 	constructor( props ) {

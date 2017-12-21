@@ -10,7 +10,12 @@ import { Helmet } from "react-helmet"
 import { SITE_TITLE } from "../../constants/settings"
 import Title from '../../components/title'
 
-
+/**
+ * Redners the Author routes
+ *
+ * @class Author
+ * @extends {Component}
+ */
 class Author extends Component {
 
 	componentDidMount() {

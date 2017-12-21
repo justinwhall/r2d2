@@ -10,7 +10,12 @@ import { fetchMainContent } from '../app/appActions'
 import { SITE_TITLE } from "../../constants/settings"
 import { withRouter } from 'react-router-dom'
 
-
+/**
+ * Redners the WordPress attachment routes
+ *
+ * @class Attachment
+ * @extends {Component}
+ */
 class Attachment extends Component {
 
 	componentDidMount() {

@@ -3,6 +3,12 @@ import { Component } from "react"
 import { POSTS_PER_PAGE, BLOG_PAGE, HOME_IS_BLOG } from "../../constants/settings"
 import { Route, Link } from 'react-router-dom'
 
+/**
+ * Renders pagination for posts route(s)
+ *
+ * @class Pagination
+ * @extends {Component}
+ */
 class Pagination extends Component {
 
 	getNextLink() {

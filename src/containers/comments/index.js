@@ -8,6 +8,12 @@ import { COMMENTS_PER_PAGE } from "../../constants/settings"
 import Comment from './comment'
 import CommentForm from './commentForm'
 
+/**
+ * Renders the comments for a post/page
+ *
+ * @class Comments
+ * @extends {Component}
+ */
 class Comments extends Component {
 
 	constructor( props ) {

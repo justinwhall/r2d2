@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c9c2a4dc641f02dd230e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "527abe4e794bf39fe85f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -2684,39 +2684,53 @@ var matchPath = function matchPath(pathname) {
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 exports.formatLink = formatLink;
 exports.formatDate = formatDate;
+/**
+ * Turns a URL into a URI for use in <Link> component
+ *
+ * @export
+ * @param {string} url
+ * @returns
+ */
 function formatLink(url) {
 
-	if (true) {
-		// remove trailing slash if present
-		var baseURL = "http://r2d2.develop/".replace(/\/$/, '');
-	} else {
-		var baseURL = window.r2d2Settings.URL.base;
-	}
+  if (true) {
+    // remove trailing slash if present
+    var baseURL = "http://r2d2.develop/".replace(/\/$/, '');
+  } else {
+    var baseURL = window.r2d2Settings.URL.base;
+  }
 
-	// remove base URL
-	url = url.replace(baseURL, '');
+  // remove base URL
+  url = url.replace(baseURL, '');
 
-	return url;
+  return url;
 }
 
+/**
+ * Formats a time stamp into a date
+ *
+ * @export
+ * @param {string} timestamp
+ * @returns
+ */
 function formatDate(timestamp) {
-	var date = new Date(timestamp);
-	return date.toLocaleDateString();
+  var date = new Date(timestamp);
+  return date.toLocaleDateString();
 }
 ;
 
 var _temp = function () {
-	if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-		return;
-	}
+  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+    return;
+  }
 
-	__REACT_HOT_LOADER__.register(formatLink, 'formatLink', '/Users/jhall/Local Sites/reactscores/app/public/wp-content/themes/r2d2/src/util/util.js');
+  __REACT_HOT_LOADER__.register(formatLink, 'formatLink', '/Users/jhall/Local Sites/reactscores/app/public/wp-content/themes/r2d2/src/util/util.js');
 
-	__REACT_HOT_LOADER__.register(formatDate, 'formatDate', '/Users/jhall/Local Sites/reactscores/app/public/wp-content/themes/r2d2/src/util/util.js');
+  __REACT_HOT_LOADER__.register(formatDate, 'formatDate', '/Users/jhall/Local Sites/reactscores/app/public/wp-content/themes/r2d2/src/util/util.js');
 }();
 
 ;
@@ -3723,6 +3737,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/**
+ * Renders pagination for posts route(s)
+ *
+ * @class Pagination
+ * @extends {Component}
+ */
 var Pagination = function (_Component) {
 	_inherits(Pagination, _Component);
 
@@ -7137,6 +7157,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/**
+ * Renders the comments for a post/page
+ *
+ * @class Comments
+ * @extends {Component}
+ */
 var Comments = function (_Component) {
 	_inherits(Comments, _Component);
 
@@ -39196,6 +39222,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/**
+ * Renders Search route
+ *
+ * @class Search
+ * @extends {Component}
+ */
 var Search = function (_Component) {
 	_inherits(Search, _Component);
 
@@ -39488,6 +39520,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/**
+ * Renders the posts routes
+ *
+ * @class Blog
+ * @extends {Component}
+ */
 var Blog = function (_Component) {
 	_inherits(Blog, _Component);
 
@@ -39655,6 +39693,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/**
+ * Renders term routes
+ *
+ * @class Term
+ * @extends {Component}
+ */
 var Term = function (_Component) {
 	_inherits(Term, _Component);
 
@@ -39837,6 +39881,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/**
+ * Renders the primary navigation
+ *
+ * @class Nav
+ * @extends {Component}
+ */
 var Nav = function (_Component) {
 	_inherits(Nav, _Component);
 
@@ -40036,6 +40086,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/**
+ * Redners the Author routes
+ *
+ * @class Author
+ * @extends {Component}
+ */
 var Author = function (_Component) {
 	_inherits(Author, _Component);
 
@@ -40196,6 +40252,12 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+/**
+ * Redners the WordPress attachment routes
+ *
+ * @class Attachment
+ * @extends {Component}
+ */
 var Attachment = function (_Component) {
 	_inherits(Attachment, _Component);
 
