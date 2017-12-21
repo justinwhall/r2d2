@@ -1,7 +1,8 @@
 ## R2D2 React WordPress Theme
 
-WordPress theme project with Yarn, Webpack, BrowserSync and React.
+WordPress theme project built with Yarn, Webpack, BrowserSync and React.
 
+See the working example: [www.wpr2d2.com](http://wpr2d2.com/)
 
 ### Getting started
 
@@ -19,6 +20,8 @@ A production-ready React `bundle.js` file will be written to `dist/bundle.js`.
 
 ### Road Map
 
-* Pagination
+* Support for admin bar
 * Custom post type support
 * Custom taxonomy support
+
+![R2D2](https://www.justinwhall.com/wp-content/uploads/2017/10/star-wars-r2-d2-legendary-scale-feature-400155.jpg)
