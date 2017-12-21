@@ -66,8 +66,9 @@ class Post extends Component {
 
 		const content = mainContent ? <Article {...mainContent} /> : <NotFound />
 		const title = mainContent ? mainContent.title.rendered : 'Page Not Found'
-		const comments = mainContent.comment_status === 'open' ? <Comments post={ mainContent } /> : null
+		const comments = ( mainContent && mainContent.comment_status === 'open' ) ? <Comments post={ mainContent } /> : null
 		const postTypeClass = mainContent ? 'post-type-' + mainContent.type : null
+		console.log( 'POST' );
 
 		return (
 			<div className={ postTypeClass }>

@@ -147,7 +147,9 @@ add_action( 'wp_enqueue_scripts', 'react_scores_scripts' );
 
 function get_menu() {
 
-	$menu = wp_get_nav_menu_items( 'main' );
+	$locations = get_nav_menu_locations();
+	$menu_obj = wp_get_nav_menu_object( $locations['menu-1'] );
+	$menu = wp_get_nav_menu_items( $menu_obj->term_id );
 
 	foreach ( $menu as $item ) {
 		// Just in case we have a home menu item with full url.

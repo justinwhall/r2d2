@@ -69,6 +69,7 @@ class App extends Component {
 							<Route exact path="/search/:query" component={ Search } />
 							<Route exact path="/search" component={ Search } />
 							<Route exact path="/attachment/:postSlug/:mediaID" component={ Attachment } />
+							{/* <Route exact path="/([0-9]+)" component={ NotFound } /> */ }
 							<Route exact path="/:postSlug" component={ Post } />
 							<Route exact path="/**" component={ Post } />
 							<Route component={ NotFound } />
