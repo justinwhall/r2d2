@@ -34,18 +34,18 @@ const webpackConfig = {
 				exclude: /node_modules/,
 				loaders: [ 'babel-loader' ]
 			},
-			{
-				test: /\.css$/,
-				use: [
-					{ loader: 'style-loader' },
-					{
-						loader: 'css-loader',
-						options: {
-							modules: true
-						}
-					}
-				]
-			},
+			// {
+			// 	test: /\.css$/,
+			// 	use: [
+			// 		{ loader: 'style-loader' },
+			// 		{
+			// 			loader: 'css-loader',
+			// 			options: {
+			// 				modules: true
+			// 			}
+			// 		}
+			// 	]
+			// },
 			{
 				test: /\.(png|svg|jpg|gif)$/,
 				use: [
@@ -54,9 +54,7 @@ const webpackConfig = {
 			}
 		]
 	},
-	// devtool: 'cheap-module-inline-source-map',
-	// devtool: 'cheap-module-source-map',
-	devtool: 'source-maps',
+	devtool: 'cheap-module-source-map',
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 	]
@@ -64,7 +62,7 @@ const webpackConfig = {
 
 if ( process.env.NODE_ENV === 'production' ) {
 
-	// webpackConfig.devtool = 'source-maps';
+	webpackConfig.devtool = 'source-maps';
 
 	const extractSass = new ExtractTextPlugin( {
 		filename: "style.css",
@@ -100,10 +98,16 @@ if ( process.env.NODE_ENV === 'production' ) {
 			use: extractSass.extract( {
 				use: [ {
 					loader: "css-loader",
-					options: { minimize: true }
+					options: {
+						minimize: true,
+						sourceMap: true
+					}
 				}, {
 					loader: "sass-loader",
-					options: { minimize: true }
+					options: {
+						minimize: true,
+						sourceMap: true
+					}
 				}],
 				// use style-loader in development
 				fallback: "style-loader"
@@ -128,11 +132,14 @@ if ( process.env.NODE_ENV === 'production' ) {
 		{
 			test: /\.scss$/,
 			use: [ {
-				loader: "style-loader" // creates style nodes from JS strings
+				loader: "style-loader", // creates style nodes from JS strings
+				options: { sourceMap: true }
 			}, {
-				loader: "css-loader" // translates CSS into CommonJS
+				loader: "css-loader", // translates CSS into CommonJS
+				options: { sourceMap: true }
 			}, {
-				loader: "sass-loader" // compiles Sass to CSS
+				loader: "sass-loader", // compiles Sass to CSS
+				options: { sourceMap: true }
 			}]
 		}
 	);
