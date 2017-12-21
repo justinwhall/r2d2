@@ -55,13 +55,16 @@ const webpackConfig = {
 		]
 	},
 	// devtool: 'cheap-module-inline-source-map',
-	devtool: 'cheap-module-source-map',
+	// devtool: 'cheap-module-source-map',
+	devtool: 'source-maps',
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 	]
 };
 
 if ( process.env.NODE_ENV === 'production' ) {
+
+	// webpackConfig.devtool = 'source-maps';
 
 	const extractSass = new ExtractTextPlugin( {
 		filename: "style.css",
