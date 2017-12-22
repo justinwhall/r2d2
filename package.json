@@ -39,6 +39,7 @@
 		"history": "^4.7.2",
 		"qs": "^6.5.1",
 		"react": "^16.0.0",
+		"react-body-classname": "^1.2.0",
 		"react-dom": "^16.0.0",
 		"react-helmet": "^5.2.0",
 		"react-hot-loader": "^3.1.1",

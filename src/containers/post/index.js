@@ -9,8 +9,15 @@ import { Helmet } from "react-helmet"
 import { fetchMainContent } from '../app/appActions'
 import { SITE_TITLE } from "../../constants/settings"
 import { withRouter } from 'react-router-dom'
+import BodyClassName from 'react-body-classname';
 
 
+/**
+ * Renders a post
+ *
+ * @class Post
+ * @extends {Component}
+ */
 class Post extends Component {
 
 	componentDidMount() {
@@ -68,16 +75,18 @@ class Post extends Component {
 		const title = mainContent ? mainContent.title.rendered : 'Page Not Found'
 		const comments = ( mainContent && mainContent.comment_status === 'open' ) ? <Comments post={ mainContent } /> : null
 		const postTypeClass = mainContent ? 'post-type-' + mainContent.type : null
-		console.log( 'POST' );
+		const classNames = postTypeClass + ' ' + mainContent.slug + ' ' + 'post' + mainContent.id
 
 		return (
-			<div className={ postTypeClass }>
-				<Helmet>
-					<title>{ title + ' | ' + SITE_TITLE }</title>
-				</Helmet>
-				{ content }
-				{ comments }
-			</div>
+			<BodyClassName className={ classNames } >
+				<div>
+					<Helmet>
+						<title>{ title + ' | ' + SITE_TITLE }</title>
+					</Helmet>
+					{ content }
+					{ comments }
+				</div>
+			</BodyClassName>
 		)
 
 	}

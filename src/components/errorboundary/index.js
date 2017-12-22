@@ -10,8 +10,6 @@ class ErrorBoundary extends Component {
 			error: false,
 			info: false
 		};
-		console.log( props );
-
 	}
 
 	componentWillReceiveProps( prevProps, prevState ) {
