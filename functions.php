@@ -139,7 +139,7 @@ add_action( 'after_setup_theme', 'react_scores_content_width', 0 );
  * Enqueue scripts and styles.
  */
 function react_scores_scripts() {
-	wp_enqueue_script( 'r2d2-react', get_template_directory_uri() . '/dist/bundle.js', array(), '0.9', true );
+	wp_enqueue_script( 'r2d2-react', get_template_directory_uri() . '/dist/bundle.js', array(), '0.8.1', true );
 	wp_enqueue_style( 'style-name', get_template_directory_uri() . '/dist/style.css' );
 }
 add_action( 'wp_enqueue_scripts', 'react_scores_scripts' );
