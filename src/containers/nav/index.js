@@ -27,9 +27,6 @@ class Nav extends Component {
 		this.setState( {
 			mobileMenuClass: this.state.mobileMenuClass === 'show' ? null : 'show'
 		} )
-
-		console.log( this.state );
-
 	}
 
 	componentWillMount() {
@@ -51,14 +48,14 @@ class Nav extends Component {
 		return (
 			<nav>
 				<div className="brand">
-					<Link to="/">{ SITE_TITLE }</Link> • <span className="tagline">{ SITE_DESCRIPTION }</span>
+					<Link to="/" onClick={ this.toggleMenu }>{ SITE_TITLE }</Link> <span className="divider">•</span> <span className="tagline">{ SITE_DESCRIPTION }</span>
 				</div>
 				<div id="burger" onClick={ this.toggleMenu } >
 					<div className="line"></div>
 					<div className="line"></div>
 					<div className="line"></div>
 				</div>
-				<div id="menu" className={ this.state.mobileMenuClass }>
+				<div id="menu" className={ this.state.mobileMenuClass } onClick={ this.toggleMenu }>
 					{ navLinks }
 				</div>
 			</nav>

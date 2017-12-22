@@ -76,12 +76,19 @@ nav {
 
 	#menu {
 		max-height: 0;
-		transition: all 400ms;
 	}
 
 	#menu.show {
 		max-height: 100vh;
+		transition: all 400ms;
 	}
 
 }
 
+@media (max-width: 600px) {
+	.brand .tagline,
+	.brand .divider {
+		display: none;
+	}
+
+}

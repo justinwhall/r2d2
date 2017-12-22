@@ -16,7 +16,7 @@ if ( version_compare( $GLOBALS['wp_version'], '4.7', '<' ) ) {
 }
 
 if ( ! defined( 'R2D2_VERSION' ) ) {
-	define( 'R2D2_VERSION', '1.0.3' );
+	define( 'R2D2_VERSION', '0.8.2' );
 }
 
 if ( ! defined( 'R2D2_APP' ) ) {
@@ -139,8 +139,10 @@ add_action( 'after_setup_theme', 'react_scores_content_width', 0 );
  * Enqueue scripts and styles.
  */
 function react_scores_scripts() {
-	wp_enqueue_script( 'r2d2-react', get_template_directory_uri() . '/dist/bundle.js', array(), '0.8.1', true );
-	wp_enqueue_style( 'style-name', get_template_directory_uri() . '/dist/style.css', array(), '0.8.1' );
+	$script_ver = file_exists( get_stylesheet_directory() . '/dist/bundle.js' ) ? filemtime( get_stylesheet_directory() . '/dist/bundle.js' ) : R2D2_VERSION;
+	$style_ver = file_exists( get_stylesheet_directory() . '/dist/style.css' ) ? filemtime( get_stylesheet_directory() . '/dist/style.css' ) : R2D2_VERSION;
+	wp_enqueue_script( 'r2d2-react', get_template_directory_uri() . '/dist/bundle.js', array(), $script_ver, true );
+	wp_enqueue_style( 'style-name', get_template_directory_uri() . '/dist/style.css', array(), $style_ver );
 }
 add_action( 'wp_enqueue_scripts', 'react_scores_scripts' );
 
