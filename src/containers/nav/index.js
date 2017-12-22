@@ -14,6 +14,24 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../../constants/settings'
  */
 class Nav extends Component {
 
+	constructor( props ) {
+		super( props );
+		this.state = {
+			mobileMenuClass: null,
+		};
+
+		this.toggleMenu = this.toggleMenu.bind( this );
+	}
+
+	toggleMenu() {
+		this.setState( {
+			mobileMenuClass: this.state.mobileMenuClass === 'show' ? null : 'show'
+		} )
+
+		console.log( this.state );
+
+	}
+
 	componentWillMount() {
 		this.props.getNavItems( '/wp-json/r2d2/menu' )
 	}
@@ -35,7 +53,12 @@ class Nav extends Component {
 				<div className="brand">
 					<Link to="/">{ SITE_TITLE }</Link> • <span className="tagline">{ SITE_DESCRIPTION }</span>
 				</div>
-				<div className="menu">
+				<div id="burger" onClick={ this.toggleMenu } >
+					<div className="line"></div>
+					<div className="line"></div>
+					<div className="line"></div>
+				</div>
+				<div id="menu" className={ this.state.mobileMenuClass }>
 					{ navLinks }
 				</div>
 			</nav>

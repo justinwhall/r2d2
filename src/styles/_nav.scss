@@ -3,8 +3,8 @@ nav {
 }
 .nav-wrap {
 	background: $dgrey;
-	position: fixed;
 	z-index: $z-index-10;
+	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
@@ -19,13 +19,13 @@ nav {
 	color: $grey;
 }
 
-.menu {
+#menu {
 	text-align: right;
 	flex-grow: 1;
 }
 
-.menu a,
-.menu a:focus {
+#menu a,
+#menu a:focus {
 	margin-left: $scaleup-3;
 	display: inline-block;
 	text-transform: uppercase;
@@ -36,8 +36,52 @@ nav {
 	outline: none;
 
 	&:hover {
-		// opacity: .8;
 		color: #fff;
 	}
+}
+
+#burger {
+
+	display: none;
+	position: absolute;
+	right: 20px;
+	top: -2px;
+
+	.line {
+		height: 4px;
+		margin: 6px 0;
+		background: $berry;
+		width: 40px;
+	}
+}
+
+@media (max-width:1000px) {
+
+	nav {
+		display: block;
+		overflow: hidden;
+	}
+
+	#burger {
+		display: block;
+	}
+
+	#menu a {
+		display: block;
+		width: 100%;
+		padding: $scaleup-2 0;
+		margin: 0 0 0 0 !important;
+		text-align: left;
+	}
+
+	#menu {
+		max-height: 0;
+		transition: all 400ms;
+	}
+
+	#menu.show {
+		max-height: 100vh;
+	}
+
 }
 
