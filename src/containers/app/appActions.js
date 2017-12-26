@@ -1,3 +1,4 @@
+import store from '../../store';
 
 function fetchMainContentSuccess( mainContent ) {
 
@@ -33,22 +34,41 @@ export function mainContentIsLoading( bool ) {
 
 export function fetchMainContent( url ) {
 
-	return ( dispatch ) => {
+	if ( first_load_data.data && store.getState().app.isFirstLoad ) {
 
-		dispatch( mainContentIsLoading( true ) );
+		return ( dispatch ) => {
+			dispatch( fetchMainContentSuccess( first_load_data.data.posts ) )
+			dispatch( setNumPosts( first_load_data.data.found_posts ) )
+		}
 
-		fetch( url )
-			.then( ( response ) => {
-				if ( !response.ok ) {
-					throw Error( response.statusText );
-				}
-				return response;
-			} )
-			.then( ( response ) => {
-				dispatch( setNumPosts( response.headers.get( 'x-wp-total' ) ) );
-				return response.json();
-			} )
-			.then( ( mainContent ) => dispatch( fetchMainContentSuccess( mainContent ) ) )
-			.catch( () => dispatch( fetchMainContentError() ) );
-	};
+	} else {
+
+		return ( dispatch ) => {
+
+			dispatch( mainContentIsLoading( true ) );
+
+			fetch( url )
+				.then( ( response ) => {
+					if ( !response.ok ) {
+						throw Error( response.statusText );
+					}
+					return response;
+				} )
+				.then( ( response ) => {
+					dispatch( setNumPosts( response.headers.get( 'x-wp-total' ) ) );
+					return response.json();
+				} )
+				.then( ( mainContent ) => dispatch( fetchMainContentSuccess( mainContent ) ) )
+				.catch( () => dispatch( fetchMainContentError() ) );
+		}
+	}
+}
+
+export function loadFirstPage( pageData ) {
+	return dispatch => {
+		dispatch( {
+			type: 'FIRST_PAGE_DATA',
+			pageData
+		} )
+	}
 }

@@ -2,6 +2,7 @@ import { LOCATION_CHANGE } from 'react-router-redux'
 
 const initialState = {
 	mainContent: false,
+	isFirstLoad: true,
 	mainContentIsLoading: true,
 	numPosts: 0
 }
@@ -12,14 +13,18 @@ function app( state = initialState, action ) {
 
 		case 'RESET_STATE':
 
-			return initialState
+			return {
+				...initialState,
+				isFirstLoad: state.isFirstLoad
+			}
 
 		case 'FETCH_MAIN_CONTENT':
 
 			return {
 				...state,
 				mainContent: action.mainContent,
-				mainContentIsLoading: false
+				mainContentIsLoading: false,
+				isFirstLoad: false
 			}
 
 		case 'FETCH_MAIN_CONTENT_ERROR':

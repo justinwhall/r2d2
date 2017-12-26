@@ -4,6 +4,7 @@ import { Route, Link, Switch, withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { BLOG_PAGE, SITE_TITLE, SITE_DESCRIPTION } from '../../constants/settings'
+import { loadFirstPage } from '../app/appActions'
 import Post from '../post'
 import Search from '../search'
 import Blog from '../blog'
@@ -21,6 +22,11 @@ import '../../styles/style.scss'
  * @extends {Component}
  */
 class App extends Component {
+
+	// constructor( props ) {
+	// 	super( props );
+	// 	// props.loadFirstPage( first_load_data.data );
+	// }
 
 	componentWillUpdate( prevProps ) {
 		if ( this.props.location.pathname !== prevProps.location.pathname ) {
@@ -43,6 +49,9 @@ class App extends Component {
 		const appClass = user == 0 ? 'logged-out' : 'logged-in';
 		const frontPage = homeIsBlog ? Blog : Post;
 		const blogPath = homeIsBlog ? '/blog' : `/${ BLOG_PAGE }`;
+
+		// console.log( this.props );
+
 
 		return (
 			<div id="app" className={ appClass }>
@@ -106,6 +115,11 @@ const mapStateToProps = function ( state ) {
 	}
 }
 
+// const mapDispatchToProps = dispatch => bindActionCreators( {
+// 	loadFirstPage
+// }, dispatch )
+
 export default withRouter( connect(
 	mapStateToProps,
+	// mapDispatchToProps
 )( App ) )

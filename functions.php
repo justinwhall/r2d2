@@ -25,9 +25,9 @@ if ( ! defined( 'R2D2_APP' ) ) {
 
 include_once 'class-r2d2-rest.php';
 include_once 'class-r2d2-permalinks.php';
+include_once 'class-r2d2-first-load.php';
 
 add_filter( 'rest_allow_anonymous_comments', '__return_true' );
-
 
 if ( ! function_exists( 'r2d2_setup' ) ) :
 	/**

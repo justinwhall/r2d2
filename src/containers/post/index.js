@@ -10,6 +10,7 @@ import { fetchMainContent } from '../app/appActions'
 import { SITE_TITLE } from "../../constants/settings"
 import { withRouter } from 'react-router-dom'
 import BodyClassName from 'react-body-classname';
+import { fetchComments } from '../comments/commentsActions';
 
 
 /**
