@@ -16,7 +16,7 @@ if ( version_compare( $GLOBALS['wp_version'], '4.7', '<' ) ) {
 }
 
 if ( ! defined( 'R2D2_VERSION' ) ) {
-	define( 'R2D2_VERSION', '0.8.2' );
+	define( 'R2D2_VERSION', '0.9.0' );
 }
 
 if ( ! defined( 'R2D2_APP' ) ) {
