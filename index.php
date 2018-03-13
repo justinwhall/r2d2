@@ -18,6 +18,6 @@
 		</div>
 
 		<img id="r2d2" src="<?php echo get_template_directory_uri(); ?>/img/r2d2.png" />
-
+		<!-- :) -->
 	</body>
 </html>
