@@ -5,8 +5,8 @@ import { ConnectedRouter } from 'react-router-redux';
 import { AppContainer } from 'react-hot-loader';
 import App from './containers/app';
 import ErrorBoundary from './components/errorboundary';
-import store, { history } from './store'
-
+import store, { history } from './store';
+import 'babel-polyfill';
 
 export const renderApp = Component => {
 	render(
